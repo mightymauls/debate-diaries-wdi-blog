@@ -1,0 +1,2093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Debate Diaries WDI Blog</title>
+<meta name="description" content="Debate Diaries — beginner-friendly guides to competitive debate from the Women's Debate Institute.">
+<meta property="og:title" content="Debate Diaries WDI Blog">
+<meta property="og:description" content="Beginner-friendly guides to competitive debate from the Women's Debate Institute.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="robots" content="noindex, nofollow">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --wdi-green: #1D9E75;
+    --wdi-green-dark: #0F6E56;
+    --wdi-green-light: #E1F5EE;
+    --wdi-green-mid: #5DCAA5;
+    --text-primary: #1a1a1a;
+    --text-secondary: #555;
+    --text-muted: #888;
+    --border: #e0e0e0;
+    --bg: #fafaf8;
+    --surface: #fff;
+    --sidebar-width: 280px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .logo-mark {
+    width: 36px;
+    height: 36px;
+    background: var(--wdi-green);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: -0.5px;
+    flex-shrink: 0;
+  }
+
+  .site-title {
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: 0.01em;
+  }
+
+  .site-subtitle {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  .layout {
+    display: flex;
+    flex: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 2rem 1.5rem;
+    gap: 2.5rem;
+    align-items: flex-start;
+  }
+
+  aside {
+    width: var(--sidebar-width);
+    flex-shrink: 0;
+    position: sticky;
+    top: 80px;
+  }
+
+  .sidebar-label {
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .post-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .post-list li button {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.6rem 0.75rem;
+    border-radius: 6px;
+    transition: background 0.15s;
+  }
+
+  .post-list li button:hover { background: var(--wdi-green-light); }
+
+  .post-list li button.active {
+    background: var(--wdi-green-light);
+    border-left: 3px solid var(--wdi-green);
+    padding-left: calc(0.75rem - 3px);
+  }
+
+  .post-title-nav {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.3;
+    display: block;
+  }
+
+  .post-list li button.active .post-title-nav { color: var(--wdi-green-dark); }
+
+  .post-tag {
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 2px;
+    display: block;
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 1rem 0;
+  }
+
+  main { flex: 1; min-width: 0; }
+
+  article {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2.5rem 3rem;
+    max-width: 680px;
+    display: none;
+  }
+
+  article.active { display: block; }
+
+  .post-series {
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--wdi-green);
+    margin-bottom: 0.5rem;
+  }
+
+  .post-heading {
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    font-family: Georgia, serif;
+  }
+
+  .post-meta {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .post-body { font-size: 16px; line-height: 1.75; color: var(--text-primary); }
+  .post-body p { margin-bottom: 1.25rem; }
+  .post-body strong { font-weight: 700; color: var(--text-primary); }
+  .post-body em { font-style: italic; }
+
+  .post-body h3 {
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 2rem 0 0.5rem;
+  }
+
+  .post-body hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+
+  .post-body ul, .post-body ol { padding-left: 1.5rem; margin-bottom: 1.25rem; }
+  .post-body li { margin-bottom: 0.5rem; line-height: 1.6; }
+
+  .post-body .lede {
+    font-size: 15px;
+    color: var(--text-secondary);
+    font-style: italic;
+    border-left: 3px solid var(--wdi-green-mid);
+    padding-left: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .speech-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    margin: 1.25rem 0;
+  }
+
+  .speech-table th {
+    text-align: left;
+    font-weight: 700;
+    padding: 0.5rem 0.75rem;
+    background: var(--wdi-green-light);
+    color: var(--wdi-green-dark);
+    border-bottom: 2px solid var(--wdi-green-mid);
+  }
+
+  .speech-table td {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  .speech-table tr:last-child td { border-bottom: none; }
+
+  .speech-table td:first-child {
+    font-weight: 600;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    font-size: 12px;
+  }
+
+  .exercise-box {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--wdi-green);
+    border-radius: 0 6px 6px 0;
+    padding: 1.25rem 1.5rem;
+    margin-top: 2rem;
+    font-size: 15px;
+  }
+
+  .exercise-box h4 {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--wdi-green);
+    margin-bottom: 0.75rem;
+  }
+
+  /* ===== Tell Mishan Layer ===== */
+  .wdi-hl {
+    background: #fff3b0;
+    border-bottom: 2px solid var(--wdi-green);
+    border-radius: 2px;
+    padding: 0 1px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .wdi-hl:hover { background: #ffe680; }
+
+  .wdi-postnote {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 2rem;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--wdi-green-dark);
+    background: none;
+    border: 1px dashed var(--wdi-green-mid);
+    border-radius: 6px;
+    padding: 8px 12px;
+    cursor: pointer;
+  }
+  .wdi-postnote:hover { background: var(--wdi-green-light); }
+
+  #wdiSelBtn {
+    position: absolute;
+    z-index: 50;
+    display: none;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    background: var(--wdi-green);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.22);
+  }
+  #wdiSelBtn:hover { background: var(--wdi-green-dark); }
+
+  #wdiDock {
+    position: fixed;
+    bottom: 20px; right: 20px;
+    z-index: 60;
+    width: 300px;
+    font-family: Arial, sans-serif;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.16);
+    overflow: hidden;
+  }
+  #wdiDockHead {
+    background: var(--wdi-green);
+    color: #fff;
+    padding: 11px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  #wdiDockHead .count { font-weight: 400; opacity: 0.92; font-size: 12px; }
+  #wdiDockBody { padding: 12px 14px; max-height: 52vh; overflow-y: auto; }
+  #wdiDock.collapsed #wdiDockBody { display: none; }
+
+  .wdi-row { margin-bottom: 10px; }
+  .wdi-row label {
+    display: block; font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.06em; color: var(--text-muted); margin-bottom: 4px;
+  }
+  .wdi-row input[type=text] {
+    width: 100%; padding: 7px 9px; border: 1px solid var(--border);
+    border-radius: 6px; font-size: 13px; font-family: Arial, sans-serif;
+  }
+  .wdi-hint { font-size: 11.5px; color: var(--text-muted); margin: 2px 0 8px; line-height: 1.4; }
+  .wdi-req { color: #c0392b; }
+  .wdi-req-note { font-size: 11px; color: var(--text-muted); margin: 5px 0 0; }
+  .wdi-clist { list-style: none; margin: 6px 0 0; padding: 0; }
+  .wdi-clist li {
+    font-size: 12.5px; padding: 9px 0; border-top: 1px solid var(--border);
+    color: var(--text-secondary);
+  }
+  .wdi-clist .cpost { font-weight: 700; color: var(--wdi-green-dark); font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .wdi-clist .cquote { color: var(--text-muted); font-style: italic; display: block; margin: 3px 0; }
+  .wdi-clist .ctxt { color: var(--text-primary); display: block; margin-top: 2px; }
+  .wdi-clist .cact button {
+    background: none; border: none; color: var(--wdi-green-dark);
+    cursor: pointer; padding: 0; font-size: 11px; margin-right: 12px; margin-top: 4px;
+  }
+  .wdi-clist .cact button:hover { text-decoration: underline; }
+  .wdi-empty { font-size: 12px; color: var(--text-muted); font-style: italic; padding: 4px 0; }
+
+  #wdiSubmit {
+    width: 100%; margin-top: 10px;
+    background: var(--wdi-green); color: #fff;
+    border: none; border-radius: 7px; padding: 10px;
+    font-size: 13px; font-weight: 700; cursor: pointer;
+  }
+  #wdiSubmit:hover { background: var(--wdi-green-dark); }
+  #wdiSubmit:disabled { background: #bbb; cursor: not-allowed; }
+
+  .wdi-modal-bg {
+    position: fixed; inset: 0; z-index: 80;
+    background: rgba(0,0,0,0.45);
+    display: none; align-items: center; justify-content: center;
+    padding: 20px;
+  }
+  .wdi-modal-bg.open { display: flex; }
+  .wdi-modal {
+    background: var(--surface); border-radius: 12px;
+    max-width: 560px; width: 100%; max-height: 85vh; overflow-y: auto;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+  .wdi-modal-in { padding: 22px 24px; }
+  .wdi-modal h3 { font-family: Georgia, serif; font-size: 20px; margin-bottom: 4px; color: var(--text-primary); }
+  .wdi-modal .sub { font-size: 12.5px; color: var(--text-muted); margin-bottom: 14px; }
+  .wdi-modal .quotebox {
+    background: var(--bg); border-left: 3px solid var(--wdi-green-mid);
+    padding: 8px 12px; font-size: 13px; font-style: italic;
+    color: var(--text-secondary); margin-bottom: 12px; border-radius: 0 4px 4px 0;
+  }
+  .wdi-modal textarea {
+    width: 100%; min-height: 110px; padding: 10px 12px;
+    border: 1px solid var(--border); border-radius: 8px;
+    font-size: 14px; font-family: Arial, sans-serif; resize: vertical;
+  }
+  .wdi-modal .summary {
+    white-space: pre-wrap; background: var(--bg); border: 1px solid var(--border);
+    border-radius: 8px; padding: 14px; font-size: 12.5px; line-height: 1.5;
+    max-height: 40vh; overflow-y: auto; color: var(--text-primary);
+  }
+  .wdi-modal-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+  .wdi-btn {
+    font-size: 13px; font-weight: 700; border-radius: 7px; padding: 9px 14px;
+    cursor: pointer; border: 1px solid var(--border);
+    background: var(--surface); color: var(--text-primary);
+  }
+  .wdi-btn:hover { background: var(--bg); }
+  .wdi-btn.primary { background: var(--wdi-green); color: #fff; border-color: var(--wdi-green); }
+  .wdi-btn.primary:hover { background: var(--wdi-green-dark); }
+  .wdi-btn.ghost { color: var(--text-secondary); }
+
+  .wdi-banner {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 70;
+    background: var(--wdi-green-dark); color: #fff;
+    font-family: Arial, sans-serif; font-size: 13px;
+    padding: 10px 16px; text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+  .wdi-banner button {
+    background: rgba(255,255,255,0.2); border: none; color: #fff;
+    border-radius: 5px; padding: 4px 10px; margin-left: 10px;
+    cursor: pointer; font-size: 12px; font-weight: 700;
+  }
+  .wdi-toast {
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+    z-index: 90; background: var(--text-primary); color: #fff;
+    font-family: Arial, sans-serif; font-size: 13px; font-weight: 700;
+    padding: 10px 18px; border-radius: 8px; box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    opacity: 0; pointer-events: none; transition: opacity 0.25s;
+  }
+  .wdi-toast.show { opacity: 1; }
+
+  #wdiDockHead .wdi-head-right { display: flex; align-items: center; gap: 10px; }
+  #wdiGuideBtn {
+    width: 20px; height: 20px; flex-shrink: 0; padding: 0;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255,255,255,0.85);
+    background: transparent; color: #fff;
+    font-family: Georgia, serif; font-size: 12px; font-weight: 700; line-height: 1;
+    cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  #wdiGuideBtn:hover { background: rgba(255,255,255,0.2); }
+
+  .wdi-faq-item { padding: 12px 0; border-top: 1px solid var(--border); }
+  .wdi-faq-item:first-child { border-top: none; padding-top: 4px; }
+  .wdi-faq .q { font-size: 14px; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
+  .wdi-faq .a { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+
+  .wdi-confidential {
+    max-width: 720px;
+    margin: 1rem auto 3rem;
+    padding: 1rem 2rem 0;
+    border-top: 1px solid var(--border);
+    font-family: Arial, sans-serif;
+    font-size: 11.5px;
+    line-height: 1.55;
+    color: var(--text-muted);
+    text-align: center;
+  }
+  .wdi-confidential strong { color: var(--text-secondary); font-weight: 700; }
+
+  @media (max-width: 640px) {
+    #wdiDock { left: 12px; right: 12px; width: auto; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-mark">WDI</div>
+  <div>
+    <div class="site-title">Women's Debate Institute</div>
+    <div class="site-subtitle">Debate Diaries</div>
+  </div>
+</header>
+
+<div class="layout">
+  <aside>
+    <div class="sidebar-label">Topics</div>
+    <ul class="post-list" id="nav">
+      <li><button onclick="show(0)" class="active"><span class="post-title-nav">Let's Cover the Basics. #1</span><span class="post-tag">Foundations</span></button></li>
+      <li><button onclick="show(1)"><span class="post-title-nav">Let's Cover the Basics. #2</span><span class="post-tag">Foundations</span></button></li>
+      <li><button onclick="show(2)"><span class="post-title-nav">Let's Cover the Basics. #3</span><span class="post-tag">Foundations</span></button></li>
+      <div class="divider"></div>
+      <li><button onclick="show(3)"><span class="post-title-nav">Lincoln-Douglas Debate</span><span class="post-tag">Format deep-dive</span></button></li>
+      <li><button onclick="show(4)"><span class="post-title-nav">Public Forum Debate</span><span class="post-tag">Format deep-dive</span></button></li>
+      <li><button onclick="show(5)"><span class="post-title-nav">Policy Debate</span><span class="post-tag">Format deep-dive</span></button></li>
+      <div class="divider"></div>
+      <li><button onclick="show(6)"><span class="post-title-nav">Where to Go Next: Resources Overview</span><span class="post-tag">Resources</span></button></li>
+      <li><button onclick="show(7)"><span class="post-title-nav">High School Debate Resources</span><span class="post-tag">Resources</span></button></li>
+      <li><button onclick="show(8)"><span class="post-title-nav">College Debate Resources</span><span class="post-tag">Resources</span></button></li>
+      <div class="divider"></div>
+      <li><button onclick="show(9)"><span class="post-title-nav">In-Round Practice: High School</span><span class="post-tag">Practice</span></button></li>
+      <li><button onclick="show(10)"><span class="post-title-nav">In-Round Practice: College</span><span class="post-tag">Practice</span></button></li>
+      <li><button onclick="show(11)"><span class="post-title-nav">Flowing: High School</span><span class="post-tag">Practice</span></button></li>
+      <li><button onclick="show(12)"><span class="post-title-nav">Flowing: College</span><span class="post-tag">Practice</span></button></li>
+      <li><button onclick="show(13)"><span class="post-title-nav">Prep Time: High School</span><span class="post-tag">Practice</span></button></li>
+      <li><button onclick="show(14)"><span class="post-title-nav">Prep Time: College</span><span class="post-tag">Practice</span></button></li>
+      <li><button onclick="show(15)"><span class="post-title-nav">Cross-Examination: High School</span><span class="post-tag">Practice</span></button></li>
+      <li><button onclick="show(16)"><span class="post-title-nav">Cross-Examination: College</span><span class="post-tag">Practice</span></button></li>
+    </ul>
+  </aside>
+
+  <main>
+
+    <!-- POST 0: Basics #1 — Debate Structure -->
+    <article class="active" id="post-0">
+      <div class="post-series">Debate Diaries</div>
+      <h1 class="post-heading">Let's Cover the Basics. #1</h1>
+      <div class="post-meta">By Mishan Pauley</div>
+      <div class="post-body">
+        <p class="lede">If you're new to competitive debate, this is your starting point. In this post we'll be covering what debate actually is, how a round is structured, and the key terms every debater needs to know.</p>
+
+        <p>Debate is a structured exchange of arguments where two sides defend opposing positions on a topic. It's not just about arguing — it's about reasoning, evidence, and communication. A debate round is built around three core elements: <strong>a resolution, an affirmative side, and a negative side</strong>.</p>
+
+        <h3>What is a Resolution?</h3>
+        <p>A resolution is the topic or statement being debated. It's the central question both sides are arguing about, and it's assigned before the round — neither team gets to choose it. Resolutions are written as declarative statements that take a clear position, so both sides know exactly what they're arguing for and against.</p>
+        <p>For example: <em>"The federal government should abolish the death penalty."</em> That statement is the resolution. Everything that happens in the round — every argument, every piece of evidence, every question — is ultimately about whether that statement is true or should be acted upon.</p>
+        <p>Resolutions vary by format. Some are philosophical, some are policy-based, and some are focused on current events. But in every case, the resolution is the anchor of the round.</p>
+
+        <h3>What is the Affirmative?</h3>
+        <p>The affirmative side (sometimes called "aff") argues <em>in favor</em> of the resolution. Their job is to prove that the resolution is true, just, or — in policy-based formats — that the change the resolution calls for should actually happen.</p>
+        <p>The aff speaks first in most formats. That means they set the terms of the debate early. A strong aff case is clear, well-organized, and anticipates the arguments the negative is likely to make.</p>
+
+        <h3>What is the Negative?</h3>
+        <p>The negative side (sometimes called "neg") argues <em>against</em> the resolution. Their job is to prove that the resolution is false, harmful, or unnecessary — or that the affirmative's case doesn't hold up.</p>
+        <p>The neg has a structural advantage: they get to see the aff's case before responding to it. But they also carry the burden of engaging with what the aff presents, not just arguing in the abstract. A neg that ignores the aff's arguments is easy to beat.</p>
+
+        <h3>How the Resolution, Affirmative, and Negative work together</h3>
+        <p>The resolution sets the question. The affirmative answers yes — and builds a case to prove it. The negative answers no — and tears that case down while building their own. Both sides go back and forth across multiple speeches, questioning each other, responding to arguments, and narrowing the round down to the moments that matter most.</p>
+        <p>At the end of the round, a judge evaluates both sides and decides who made the stronger case. They're not ruling on who was "right" in real life — they're ruling on who debated better within the round.</p>
+
+        <h3>Why This Structure Matters</h3>
+        <p>Understanding the resolution, the aff, and the neg isn't just vocabulary — it shapes how you approach every round. When you're aff, your whole strategy flows from defending the resolution. When you're neg, your strategy flows from dismantling it.</p>
+        <p>In most formats, teams argue both sides over the course of a tournament. That's by design. Debate isn't about what you personally believe — it's about your ability to construct and defend a position under pressure, regardless of which side you're given.</p>
+
+        <div class="exercise-box">
+          <h4>Try it yourself</h4>
+          <p>Take this resolution: <em>"The United States should adopt a universal basic income."</em></p>
+          <p style="margin-top: 0.75rem;">Write two sentences — one that captures the strongest argument the affirmative could make, and one that captures the strongest argument the negative could make. Don't worry about evidence yet. Just think: what is the most compelling reason someone would argue <em>for</em> this, and what is the most compelling reason someone would argue <em>against</em> it?</p>
+          <p style="margin-top: 0.75rem;">That exercise — taking both sides seriously — is one of the most important habits in debate.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- POST 1: Basics #2 — Claim/Warrant/Data -->
+    <article id="post-1">
+      <div class="post-series">Debate Diaries</div>
+      <h1 class="post-heading">Let's Cover the Basics. #2</h1>
+      <div class="post-meta">By Mishan Pauley</div>
+      <div class="post-body">
+        <p class="lede">In our last post, we covered what debate is and how a round works — the resolution, the affirmative, and the negative. Now it's time to get into the part that actually happens inside the round: building arguments.</p>
+
+        <p>An argument isn't just an opinion. In competitive debate, a well-built argument has structure — and that structure is what makes it persuasive, defensible, and hard to tear down. An effective argument consists of three key elements: <strong>a claim, a warrant, and data</strong>.</p>
+
+        <h3>What is a Claim?</h3>
+        <p>A claim is the position you're asserting — a declarative statement that expresses a specific belief or conclusion you're asking the judge to accept. It's the "what" of your argument: what are you saying is true?</p>
+        <p>A claim on its own isn't an argument. "The death penalty is unjust" is a claim. It takes a position, but it doesn't give the judge any reason to agree with it. That's where the warrant and data come in.</p>
+
+        <h3>What is a Warrant?</h3>
+        <p>A warrant is the reasoning or justification that explains <em>why</em> your claim is true. It's the logical bridge between your claim and your evidence — the "why" that makes the whole argument hold together.</p>
+        <p>Without a warrant, you're just asserting things. With a warrant, you're explaining the mechanism, the principle, or the logic that makes your claim follow from the evidence. Strong warrants are specific, clear, and directly tied to the claim they're supporting.</p>
+
+        <h3>What is Data?</h3>
+        <p>Data refers to the specific evidence that supports your argument — facts, statistics, studies, expert testimony, documented examples. Data is the "proof" component: it's what you point to when someone asks "how do you know?"</p>
+        <p>In competitive debate, data usually comes from citable sources. A statistic from a peer-reviewed study, a finding from a government report, a quote from a recognized expert — these carry weight in a round because they're verifiable and come from credible sources. Unsourced claims are easy for opponents to dismiss.</p>
+
+        <h3>How Claim, Warrant, and Data work together</h3>
+        <p>The three elements are designed to interlock. The claim makes the assertion. The warrant explains the logic. The data provides the proof. When all three are working together, the argument is coherent and hard to attack — because to defeat it, your opponent has to either challenge your evidence, undercut your reasoning, or dispute the conclusion directly.</p>
+        <p>Here's what that looks like in practice:</p>
+        <ul>
+          <li><strong>Claim:</strong> The death penalty should be abolished because it is applied unequally across racial lines.</li>
+          <li><strong>Warrant:</strong> When a punishment is distributed unequally based on race rather than the severity of the crime, it violates the constitutional guarantee of equal protection under the law — making it unjust regardless of its intended purpose.</li>
+          <li><strong>Data:</strong> According to the ACLU, Black defendants are significantly more likely to receive the death penalty than white defendants convicted of similar crimes, particularly when the victim is white.</li>
+        </ul>
+        <p>Notice how each piece earns its place. Remove any one of the three, and the argument weakens significantly.</p>
+
+        <h3>Common Mistakes to Avoid</h3>
+        <p><em>Claim without a warrant.</em> Asserting something strongly isn't the same as proving it. If your argument is just a series of confident claims without reasoning, a prepared opponent will ask "why?" and you won't have an answer.</p>
+        <p><em>Data without a claim.</em> Statistics on their own don't make an argument — someone has to interpret them. Always tell the judge what your evidence means and what conclusion it supports.</p>
+        <p><em>Warrant without data.</em> A logical argument that isn't grounded in evidence is easy to dismiss as speculation. The warrant explains the mechanism; the data proves the mechanism is real.</p>
+
+        <h3>Why This Structure Matters Beyond Debate</h3>
+        <p>The claim-warrant-data framework isn't just a debate tool. It's how well-constructed arguments work in legal briefs, scientific papers, op-eds, and policy memos. In a round, you'll use it on offense (building your own arguments) and on defense (identifying the weaknesses in your opponent's).</p>
+
+        <div class="exercise-box">
+          <h4>Try it yourself</h4>
+          <p>Build one complete argument using the resolution: <em>"The United States should implement universal healthcare."</em></p>
+          <p style="margin-top: 0.75rem;">Write all three components — claim, warrant, and data — and make sure each one earns its place. Then try building the same structure for the negative side.</p>
+          <p style="margin-top: 0.75rem;">When you're done, check your work: Does the warrant actually connect the data to the claim? Would a skeptical judge be persuaded?</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- POST 2: Basics #3 — Formats Overview -->
+    <article id="post-2">
+      <div class="post-series">Debate Diaries</div>
+      <h1 class="post-heading">Let's Cover the Basics. #3</h1>
+      <div class="post-meta">By Mishan Pauley</div>
+      <div class="post-body">
+        <p class="lede">In our last two posts, we covered what debate is, how a round works, and how to build a strong argument using a claim, warrant, and data. Now it's time to figure out where you actually want to compete — because not all debate looks the same.</p>
+
+        <p>In this post we'll be breaking down the three most common competitive debate formats: <strong>Lincoln-Douglas, Public Forum, and Policy</strong>.</p>
+
+        <h3>What is Lincoln-Douglas Debate?</h3>
+        <p>Lincoln-Douglas (LD) is a one-on-one format, meaning each debater competes individually rather than on a team. Resolutions are philosophical or ethical in nature — think questions about justice, morality, and the role of government — and topics change every two months at the national level.</p>
+        <p>LD is often described as the "values" format because debaters are expected to ground their arguments in an ethical framework and defend it under pressure. Rounds move quickly, and the format rewards debaters who can think on their feet and articulate complex ideas clearly.</p>
+
+        <h3>What is Public Forum Debate?</h3>
+        <p>Public Forum (PF) is a two-on-two team format. Resolutions are current-events-based — covering topics in domestic and international policy — and change every month. The format was designed to be accessible, meaning arguments should be understandable to a general audience, not just debate insiders.</p>
+        <p>PF is collaborative by nature. You and your partner split research, build strategy together, and have to stay in sync throughout a round. Evidence and recent data matter a lot here.</p>
+
+        <h3>What is Policy Debate?</h3>
+        <p>Policy (also called "CX" for cross-examination) is a two-on-two format built around a single resolution that stays the same for the entire academic year. That single topic goes very deep — teams spend months researching every angle, and rounds can involve hundreds of pieces of evidence.</p>
+        <p>Policy is the most research-intensive format, and rounds often move fast. It rewards thoroughness, preparation, and strategic thinking.</p>
+
+        <h3>How the Three Formats Differ</h3>
+        <p>Each format asks something different of you. LD puts you alone in the room with a philosophical question and asks you to defend a value system. PF puts you on a team responding to the news cycle. Policy puts you on a team going deeper on one topic than you thought possible.</p>
+
+        <h3>How to Choose</h3>
+        <p>There's no wrong answer — the best format is the one that keeps you engaged. A few questions to help you decide:</p>
+        <ul>
+          <li>Do you prefer working alone or with a partner?</li>
+          <li>Are you more drawn to ethics and philosophy, or current events and policy?</li>
+          <li>Do you want to explore many topics throughout the year, or go deep on one?</li>
+        </ul>
+        <p>Many debaters try more than one format before finding their home. And the skills transfer — once you can build a strong argument and think on your feet, you can compete in any room.</p>
+
+        <div class="exercise-box">
+          <h4>Try it yourself</h4>
+          <p>Look up one current resolution for each format (the National Speech & Debate Association publishes them at nsda.org). For each resolution, write one complete argument using the claim, warrant, and data framework from our last post.</p>
+          <p style="margin-top: 0.75rem;">Which topic got you most excited to dig in? That's probably your format.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- POST 3: LD Deep-Dive -->
+    <article id="post-3">
+      <div class="post-series">Debate Diaries — Format Deep-Dive</div>
+      <h1 class="post-heading">Lincoln-Douglas Debate: What You Need to Know</h1>
+      <div class="post-meta">By Mishan Pauley</div>
+      <div class="post-body">
+        <p class="lede">If you've chosen Lincoln-Douglas — or you're still deciding — this post is your preparation guide. We're going beyond the basics and into what a real LD round looks like, how to build your case, and what it takes to compete.</p>
+
+        <h3>The Format at a Glance</h3>
+        <p>LD is a one-on-one format. Just you and your opponent. No partner to lean on, no one to split research with — which is part of what makes it uniquely demanding and uniquely rewarding. Rounds are judged by a single judge, and the entire exchange is built around a philosophical or ethical resolution.</p>
+
+        <h3>The Round Structure</h3>
+        <table class="speech-table">
+          <thead><tr><th>Speech</th><th>Time</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Affirmative Constructive (AC)</td><td>6 min</td><td>Aff presents full case</td></tr>
+            <tr><td>Cross-Examination by Neg</td><td>3 min</td><td></td></tr>
+            <tr><td>Negative Constructive (NC)</td><td>7 min</td><td>Neg case + response to aff</td></tr>
+            <tr><td>Cross-Examination by Aff</td><td>3 min</td><td></td></tr>
+            <tr><td>First Affirmative Rebuttal (1AR)</td><td>4 min</td><td>Aff responds to everything neg said</td></tr>
+            <tr><td>Negative Rebuttal (NR)</td><td>6 min</td><td>Neg's final speech</td></tr>
+            <tr><td>Second Affirmative Rebuttal (2AR)</td><td>3 min</td><td>Aff's final speech</td></tr>
+          </tbody>
+        </table>
+        <p>Each debater also has prep time — typically 4 minutes total — that they can use at any point before their speeches.</p>
+
+        <h3>The Framework: Value and Criterion</h3>
+        <p>What makes LD distinct from other formats is the framework. Before you get into your specific arguments, you establish a <strong>value</strong> — the overarching moral good your case is working toward (e.g., justice, human dignity, societal welfare) — and a <strong>criterion</strong>, which is the standard used to measure whether that value is being upheld.</p>
+        <p>Think of it this way: if your value is <em>justice</em>, your criterion might be <em>equal protection under the law</em>. Every argument you make should tie back to showing that your side better upholds that criterion, and therefore better achieves the value. Winning the framework debate can be just as important as winning individual arguments.</p>
+
+        <h3>What the Speeches Are Actually For</h3>
+        <p>The <strong>AC</strong> is your opening statement. It should present your framework and your contentions in a clear, organized way. This is your only fully prepared affirmative speech, so it needs to be tight.</p>
+        <p>The <strong>NC</strong> has two jobs: present the neg's framework and contentions, and begin attacking the aff's case. Seven minutes sounds like a lot — use it deliberately.</p>
+        <p>The <strong>1AR</strong> is the hardest speech in LD. You have four minutes to respond to seven minutes of neg arguments. Prioritization is everything — focus on the arguments that matter most to the round.</p>
+        <p>The <strong>NR</strong> is the neg's chance to collapse — narrow down to the arguments they're winning and go all in. Spreading yourself too thin here is a common mistake.</p>
+        <p>The <strong>2AR</strong> mirrors the NR. Pick your best two or three arguments, explain why you're winning them, and give the judge a clear reason to vote aff.</p>
+
+        <h3>What Judges Look For</h3>
+        <p>Most LD judges are evaluating three things: the quality of your arguments, how well you respond to your opponent, and how clearly you communicate. Some judges prioritize philosophical depth; others evaluate rounds more technically. Before a round, ask your judge about their judging philosophy if you have the chance.</p>
+
+        <h3>Key Skills to Develop</h3>
+        <p><strong>Flowing.</strong> In LD, a dropped argument — one your opponent made that you didn't respond to — can cost you the round. Developing a fast, organized flow system is essential.</p>
+        <p><strong>Cross-examination.</strong> CX is a strategic tool. Use it to clarify your opponent's framework, expose weaknesses in their evidence, and set up arguments you'll make in your next speech.</p>
+        <p><strong>Time allocation.</strong> Learning to identify what matters most in a given round — and spend your time there — is what separates good LD debaters from great ones.</p>
+
+        <div class="exercise-box">
+          <h4>Going in</h4>
+          <p>Walk into your first round knowing your AC cold. Know your value, your criterion, and your contentions well enough to explain them under pressure. Be ready for cross-examination by anticipating the weakest points of your case. And flow everything — every argument your opponent makes is either an opportunity or a problem, and you need to know which.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- POST 4: PF Deep-Dive -->
+    <article id="post-4">
+      <div class="post-series">Debate Diaries — Format Deep-Dive</div>
+      <h1 class="post-heading">Public Forum Debate: What You Need to Know</h1>
+      <div class="post-meta">By Mishan Pauley</div>
+      <div class="post-body">
+        <p class="lede">If you've chosen Public Forum — or you're still deciding — this post is your preparation guide. We're going beyond the basics and into what a real PF round looks like, how to work with your partner, and what it takes to compete.</p>
+
+        <h3>The Format at a Glance</h3>
+        <p>PF is a two-on-two team format built around current events and policy. Resolutions change every month, which means you're constantly doing new research. The format was designed to be accessible to a general audience, so arguments should be clear, well-evidenced, and easy to follow.</p>
+
+        <h3>The Round Structure</h3>
+        <table class="speech-table">
+          <thead><tr><th>Speech</th><th>Time</th></tr></thead>
+          <tbody>
+            <tr><td>Team A Case</td><td>4 min</td></tr>
+            <tr><td>Team B Case</td><td>4 min</td></tr>
+            <tr><td>Crossfire (A & B)</td><td>3 min</td></tr>
+            <tr><td>Team A Rebuttal</td><td>4 min</td></tr>
+            <tr><td>Team B Rebuttal</td><td>4 min</td></tr>
+            <tr><td>Crossfire (A & B)</td><td>3 min</td></tr>
+            <tr><td>Team A Summary</td><td>2 min</td></tr>
+            <tr><td>Team B Summary</td><td>2 min</td></tr>
+            <tr><td>Grand Crossfire (all four)</td><td>3 min</td></tr>
+            <tr><td>Team A Final Focus</td><td>2 min</td></tr>
+            <tr><td>Team B Final Focus</td><td>2 min</td></tr>
+          </tbody>
+        </table>
+        <p>Each team typically gets 2–3 minutes of prep time. A coin flip before the round determines which team argues which side and who speaks first.</p>
+
+        <h3>Evidence and Cards</h3>
+        <p>PF is evidence-driven. In PF, a piece of evidence is often called a <strong>card</strong>, and cutting cards (finding, excerpting, and organizing evidence) is a core part of preparation. When you read a card in a round, you read the citation and the key excerpt. Your opponent can ask to see the full source during crossfire.</p>
+        <p>Strong PF debaters don't just collect evidence — they understand it well enough to explain it in their own words and defend it under pressure.</p>
+
+        <h3>Working With Your Partner</h3>
+        <p>Before you step into a round, you and your partner need clearly divided responsibilities: who reads which contentions, who leads crossfire, who handles which rebuttals. During the round, use prep time strategically — identify what arguments are winning, what needs to be dropped, and where to focus the next speech.</p>
+        <p>Disagreeing with your partner in the middle of a round is something to avoid. Work out your strategic disagreements before you sit down, not in front of the judge.</p>
+
+        <h3>What the Speeches Are Actually For</h3>
+        <p>The <strong>case speeches</strong> present your team's two or three main arguments. The <strong>rebuttal speeches</strong> attack the other team's case — in PF, the second rebuttal team must also respond to the first rebuttal. The <strong>summary speeches</strong> narrow the round: drop arguments you're losing and go deep on the ones you're winning. The <strong>Final Focus</strong> is your last two minutes — clean, clear, focused on one or two reasons the judge should vote for your team. No new arguments.</p>
+
+        <h3>Crossfire</h3>
+        <p>Crossfire in PF is conversational — both debaters speak, ask questions, and answer them. Use it to challenge weak evidence, expose logical gaps, and set up points you'll make in the next speech. Grand crossfire involves all four debaters, which can get loud. Staying composed and strategic while the room gets heated is a skill worth practicing.</p>
+
+        <h3>Key Skills to Develop</h3>
+        <p><strong>Research.</strong> The team that walks in better prepared usually wins. Build a research habit and update your evidence as the news develops.</p>
+        <p><strong>Flowing.</strong> You need to track every argument made across all those speeches. Develop a clear, fast flow system so nothing slips through.</p>
+        <p><strong>Evidence comparison.</strong> When both teams have evidence on the same question, you need to argue why yours is better — more recent, more qualified, more directly on point.</p>
+
+        <div class="exercise-box">
+          <h4>Going in</h4>
+          <p>Know your case cold before you walk in. Know your partner's case just as well — you may need to defend it. Be ready for crossfire by anticipating the hardest questions about your evidence. And go into every round with a clear sense of which two arguments you'd go to the mat for if everything else fell apart.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- POST 5: Policy Deep-Dive -->
+    <article id="post-5">
+      <div class="post-series">Debate Diaries — Format Deep-Dive</div>
+      <h1 class="post-heading">Policy Debate: What You Need to Know</h1>
+      <div class="post-meta">By Mishan Pauley</div>
+      <div class="post-body">
+        <p class="lede">If you've chosen Policy — or you're still deciding — this post is your preparation guide. We're going beyond the basics and into what a real Policy round looks like, how to build a case, and what it takes to compete in the most research-intensive format in competitive debate.</p>
+
+        <h3>The Format at a Glance</h3>
+        <p>Policy debate (also called CX, for cross-examination) is a two-on-two team format. Unlike PF, which changes topics monthly, Policy uses a single resolution for the entire academic year. That single topic becomes the center of months of deep research, evolving strategy, and increasingly complex argumentation.</p>
+
+        <h3>The Round Structure</h3>
+        <table class="speech-table">
+          <thead><tr><th>Speech</th><th>Time</th></tr></thead>
+          <tbody>
+            <tr><td>First Affirmative Constructive (1AC)</td><td>8 min</td></tr>
+            <tr><td>Cross-Examination by 2nd Neg</td><td>3 min</td></tr>
+            <tr><td>First Negative Constructive (1NC)</td><td>8 min</td></tr>
+            <tr><td>Cross-Examination by 1st Aff</td><td>3 min</td></tr>
+            <tr><td>Second Affirmative Constructive (2AC)</td><td>8 min</td></tr>
+            <tr><td>Cross-Examination by 1st Neg</td><td>3 min</td></tr>
+            <tr><td>Second Negative Constructive (2NC)</td><td>8 min</td></tr>
+            <tr><td>Cross-Examination by 2nd Aff</td><td>3 min</td></tr>
+            <tr><td>First Negative Rebuttal (1NR)</td><td>5 min</td></tr>
+            <tr><td>First Affirmative Rebuttal (1AR)</td><td>8 min</td></tr>
+            <tr><td>Second Negative Rebuttal (2NR)</td><td>5 min</td></tr>
+            <tr><td>Second Affirmative Rebuttal (2AR)</td><td>5 min</td></tr>
+          </tbody>
+        </table>
+        <p>Each team gets prep time — typically 8 minutes total — to use strategically across the round.</p>
+
+        <h3>The 1AC: The Affirmative's Blueprint</h3>
+        <p>The affirmative team reads the same 1AC at the start of every round. It presents a specific policy change (called a <strong>plan</strong>) and argues it solves a real-world problem. A strong 1AC has three components: the <strong>advantage</strong> (the problem you're solving), the <strong>inherency</strong> (why the problem won't be solved without your plan), and the <strong>solvency</strong> (why your plan actually fixes it).</p>
+
+        <h3>On-Case vs. Off-Case Arguments</h3>
+        <p><strong>On-case arguments</strong> directly attack the 1AC — challenging the evidence, questioning whether the harm is real, or arguing the plan won't solve the problem.</p>
+        <p><strong>Off-case arguments</strong> are negative positions that exist independently of the aff case:</p>
+        <ul>
+          <li><strong>Disadvantages (DAs):</strong> Arguments that the affirmative plan causes a harmful consequence. A well-run DA can outweigh the aff's benefits even if the plan works as described.</li>
+          <li><strong>Counterplans (CPs):</strong> An alternative policy the negative proposes instead of the aff's plan. If the judge prefers the CP, the neg wins.</li>
+          <li><strong>Kritiks (Ks):</strong> Philosophical challenges to the assumptions underlying the aff's case — questioning the framing, methodology, or values of the 1AC rather than just its policy conclusions.</li>
+        </ul>
+
+        <h3>Speed</h3>
+        <p>Policy debate is known for speed. Many debaters practice <strong>spreading</strong> — reading evidence and arguments at an extremely fast pace to fit more content into each speech. Speed is a skill that develops with practice, and not every circuit emphasizes it equally. Some judges — called <strong>lay judges</strong> — prefer a slower, more conversational style. When in doubt, clarity beats speed.</p>
+
+        <h3>The Rebuttals and Collapsing</h3>
+        <p>The 2NC and 1NR split the negative's rebuttal time between two speakers — this is called the <strong>2NC/1NR split</strong>. By the 2NR, the negative must <strong>collapse</strong> — pick one or two arguments they're winning and go all in. The 1AR is one of the hardest speeches in all of debate: eight minutes of neg offense, answered in eight minutes. Prioritization is everything.</p>
+
+        <h3>What Judges Look For</h3>
+        <p><strong>Flow judges</strong> track arguments technically. <strong>Lay judges</strong> prioritize communication and persuasion. <strong>K-friendly judges</strong> engage seriously with philosophical arguments. Before a round, read your judge's paradigm if it's available — it tells you exactly how they evaluate rounds.</p>
+
+        <h3>Key Skills to Develop</h3>
+        <p><strong>Research depth.</strong> Policy rewards teams that know their topic inside and out. The team with better cards often wins close rounds.</p>
+        <p><strong>Flowing.</strong> With eight-minute constructives and multiple off-case positions, Policy has the most complex flows in competitive debate. Your flow is your lifeline.</p>
+        <p><strong>Partner coordination.</strong> The 2A and 2N carry the bulk of the rebuttal burden — the partnership has to be clearly defined. Debrief after every round and adjust your strategy as the season develops.</p>
+        <p><strong>Evidence comparison.</strong> When both teams have cards on the same question, you need to win the evidence debate — arguing your source is more qualified, more recent, or more directly on point.</p>
+
+        <div class="exercise-box">
+          <h4>Going in</h4>
+          <p>Know your 1AC well enough to explain every word of it without your notes. Know your neg positions — especially your DAs and any CPs you're running — at the same level. Walk into every round with a clear sense of what your team's best path to victory looks like, and be ready to adapt when the round doesn't go the way you planned.</p>
+          <p style="margin-top: 0.75rem;">Policy rewards preparation more than almost any other format. Put in the work before the round, and the round gets easier.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- POST 6: Debate Resources -->
+    <article id="post-6">
+      <div class="post-series">Debate Diaries — Resources</div>
+      <h1 class="post-heading">Where to Go Next: Real-World Debate Resources for High School and College</h1>
+      <div class="post-meta">By Mishan Pauley</div>
+      <div class="post-body">
+        <p class="lede">So you've got the basics down — you know what a resolution is, how to build a claim-warrant-data argument, and which format fits how you like to debate. Now what?</p>
+
+        <p>This post is your map to the resources real debaters actually use: where topics come from, where evidence lives, who runs the tournaments, and where to go for coaching and practice. We'll split everything by high school and college, since the ecosystems — while related — run on different platforms and organizations.</p>
+
+        <h3>What Is a "Debate Resource," Exactly?</h3>
+        <p>When people say "debate resources," they usually mean one of four things: <strong>topic and rules information</strong> — what you're debating this month; <strong>evidence and case files</strong> — research, cards, and pre-built arguments; <strong>disclosure platforms</strong> — places where teams post what they ran in past rounds; and <strong>coaching, camps, and practice tools</strong> — structured ways to build skills outside of tournament rounds. Every resource below falls into one of these buckets.</p>
+
+        <hr>
+
+        <h3>High School: LD, PF, and Policy</h3>
+
+        <h3>What is the source of truth for topics?</h3>
+        <p>For all three high school formats, that's the <a href="https://www.speechanddebate.org/topics/" target="_blank">National Speech & Debate Association (NSDA)</a>. NSDA runs the topic-selection process for LD and PF — each format gets a new resolution roughly every two months, voted on by coaches and students. Policy debate runs on a single year-long topic instead.</p>
+
+        <h3>What is the Open Evidence Project?</h3>
+        <p>Run by the National Debate Coaches Association, the <a href="https://openev.debatecoaches.org/" target="_blank">Open Evidence Project</a> is a free, public collection of files shared by summer debate camps. It's organized by camp (Michigan, Dartmouth, Emory, Georgetown, and more), and it's the single best free starting point for understanding how serious programs are approaching a topic — especially for Policy, but increasingly useful for PF and LD too.</p>
+
+        <h3>What is openCaselist, and why does it matter?</h3>
+        <p><a href="https://opencaselist.com/" target="_blank">openCaselist</a> is the modern disclosure wiki for Public Forum, Lincoln-Douglas, and Policy. It runs on the idea that debaters benefit from being able to see each other's arguments before a round starts. You log in with your Tabroom account, pick a format, and browse by school.</p>
+
+        <h3>Where do I find tournaments and results?</h3>
+        <p><a href="https://www.tabroom.com/" target="_blank">Tabroom.com</a> is the backbone of the high school (and increasingly college) circuit — it runs registration, pairings, and results for nearly every tournament, and it's the login system that powers openCaselist.</p>
+
+        <h3>What about paid resources?</h3>
+        <p>Companies like <a href="https://championbriefs.com/" target="_blank">Champion Briefs</a> and <a href="https://victorybriefs.com/" target="_blank">Victory Briefs</a> publish topic-by-topic analysis, briefs, and curricula for LD, PF, and Congress. They're not free, but they're built specifically around the current NSDA topics, which makes them a fast way to orient on a new resolution.</p>
+
+        <hr>
+
+        <h3>College: Policy, Parliamentary, and Beyond</h3>
+
+        <h3>What governs college policy debate?</h3>
+        <p>The <a href="https://cedadebate.org/" target="_blank">Cross Examination Debate Association (CEDA)</a>, working alongside the <a href="https://nationaldebatetournament.org/" target="_blank">National Debate Tournament (NDT)</a> committee and the American Debate Association (ADA), sets the single year-long topic used across intercollegiate policy debate. The college season runs September through late March, with the NDT, CEDA, and ADA each hosting their own national championships.</p>
+
+        <h3>What about parliamentary debate?</h3>
+        <p>The <a href="https://npdadebate.com/" target="_blank">National Parliamentary Debate Association (NPDA)</a> governs college parli — a faster-paced, less evidence-heavy format that leans more on extemporaneous argument-building. NPDA sanctions a year-long circuit of invitationals leading up to its national championship.</p>
+
+        <h3>What about IPDA?</h3>
+        <p>The International Public Debate Association runs a format built for audience accessibility — minimal jargon, no flowing required to follow along, and a heavier emphasis on persuasive delivery than card-based evidence. Several programs that compete in NDT/CEDA or NPDA also field IPDA teams.</p>
+
+        <h3>What about camps and coaching?</h3>
+        <p>Most major college programs run summer institutes that double as training and evidence-production pipelines — <a href="https://www.ddidebate.org/" target="_blank">Dartmouth's DDI</a>, the <a href="https://debate.georgetown.edu/georgetown-debate-seminar/" target="_blank">Georgetown Debate Seminar</a>, and the <a href="https://class.unt.edu/communication/debate" target="_blank">University of North Texas's Mean Green Comet Debate Institute</a> are a few well-known examples. These camps are where a lot of the files in the Open Evidence Project originate.</p>
+
+        <hr>
+
+        <h3>Staying Sharp: General-Knowledge Resources</h3>
+        <p>Not every hour you spend getting better at debate needs to start with a topic file. Publications like <em>Foreign Affairs</em> and <em>The Economist</em>, and think tanks like the Council on Foreign Relations and the Brookings Institution, cover the recurring themes — international relations, economics, domestic policy — that show up across LD, PF, and Policy topics year after year.</p>
+        <p>The podcast and event series <a href="https://www.opentodebate.org/" target="_blank">Open to Debate</a> (formerly Intelligence Squared U.S.) stages real debates between experts on contested public questions. Listening to a few episodes is a low-pressure way to hear what well-supported argumentation sounds like outside the specific conventions of a competitive round.</p>
+
+        <hr>
+
+        <h3>A Note on Using These Resources Responsibly</h3>
+        <p>Is it "cheating" to use someone else's evidence or cases? No — disclosure exists precisely so debaters can build on each other's research. That said, a few habits separate using these resources well from leaning on them as a crutch:</p>
+        <ul>
+          <li><strong>Read before you cut.</strong> Don't just copy a card into your file — understand the underlying study or article well enough to defend it if your opponent cross-examines you on it.</li>
+          <li><strong>Cite your sources properly</strong>, the same way you would in any academic work.</li>
+          <li><strong>Check your tournament's and circuit's disclosure norms</strong> before assuming a resource is fair game — some local circuits and novice divisions limit outside evidence to keep the playing field even for newer debaters.</li>
+        </ul>
+        <p>Used well, these resources don't replace your own thinking — they give you a faster on-ramp to the conversation that's already happening.</p>
+
+        <h3>Quick Links Back to the Format Deep-Dives</h3>
+        <p>If any of this terminology — disclosure, cards, off-case, crossfire — feels unfamiliar, that's exactly what our format guides are for:</p>
+        <ul>
+          <li><strong>Lincoln-Douglas debaters:</strong> revisit our <a href="#" onclick="show(3); return false;">LD prep guide</a> for round structure and value/criterion framework.</li>
+          <li><strong>Public Forum debaters:</strong> our <a href="#" onclick="show(4); return false;">PF prep guide</a> covers how cards and evidence fit into the round, plus crossfire strategy.</li>
+          <li><strong>Policy debaters:</strong> our <a href="#" onclick="show(5); return false;">Policy prep guide</a> walks through the 1AC, on/off-case positions, and how to actually use camp files without getting buried in them.</li>
+        </ul>
+
+        <div class="exercise-box">
+          <h4>Going in</h4>
+          <p>Pick one resource from this post that matches your format and current level — for most readers, that's either the NSDA Topics page (HS) or openCaselist (HS or college). Spend 20 minutes exploring it cold, with no goal except to get oriented:</p>
+          <ul style="margin-top: 0.75rem;">
+            <li>What's the current topic, and when does the next one get announced?</li>
+            <li>Can you find one piece of evidence or one case file related to it?</li>
+            <li>Does your tournament or circuit have any rules about using outside evidence? Ask your coach if you're not sure.</li>
+            <li>Write down two things you didn't know existed before today.</li>
+          </ul>
+          <p style="margin-top: 0.75rem;">You don't need to use any of it yet. The goal is just to know where the door is — so that the next time you need to walk through it, you're not starting from zero.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- POST 7: HS Resources -->
+    <article id="post-7">
+      <div class="post-series">Debate Diaries — Resources</div>
+      <h1 class="post-heading">Where to Go Next: High School Debate Resources</h1>
+      <div class="post-meta">By Mishan Pauley</div>
+      <div class="post-body">
+        <p class="lede">If you're competing in LD, PF, or Policy at the varsity, JV, or novice level, here's where to go and why — organized by what you're actually looking for.</p>
+
+        <h3>Topic Information</h3>
+
+        <h3>What is the NSDA, and why does it matter?</h3>
+        <p>The <a href="https://www.speechanddebate.org/topics/" target="_blank">National Speech & Debate Association</a> is the governing body for competitive speech and debate in the United States. Everything flows from NSDA at the high school level — the topics, the format rules, the national championship. NSDA publishes the current resolution for every format on its Topics page. For LD and PF, topics rotate roughly every two months via student and coach vote. Policy runs a single year-long topic announced at the end of the previous season's national tournament.</p>
+
+        <h3>Where do I find format rulebooks?</h3>
+        <p>The NSDA publishes official rulebooks for each format covering speech times, cross-examination rules, evidence standards, and what's permissible in a round. If you have a rules dispute or want to understand what judges are supposed to evaluate, the rulebook is the first place to go. <a href="https://www.speechanddebate.org/resources/" target="_blank">speechanddebate.org/resources</a></p>
+
+        <hr>
+
+        <h3>Evidence and Case Files</h3>
+
+        <h3>What is the Open Evidence Project?</h3>
+        <p>Run by the <a href="https://www.ndcaonline.org/" target="_blank">National Debate Coaches Association (NDCA)</a>, the <a href="https://openev.debatecoaches.org/" target="_blank">Open Evidence Project</a> is the most important free resource in competitive debate. Every summer, major debate institutes — Michigan, Dartmouth, Emory, Georgetown, Wake Forest, and others — contribute research files organized by camp and by argument. Anyone can download them. For Policy debaters, it's essential prep. For PF and LD, it's a strong secondary resource and a great way to understand how experienced coaches structure arguments on a given topic.</p>
+
+        <h3>What are "briefs," and where do I get them?</h3>
+        <p>A brief is a pre-organized argument file built around a specific topic — containing a summary, key evidence (cards), and common responses to opponent attacks. Two companies dominate at the high school level:</p>
+        <ul>
+          <li><a href="https://championbriefs.com/" target="_blank"><strong>Champion Briefs</strong></a> — topic-by-topic briefs and "flexbooks" for LD, PF, and Congress, widely used by coaches. Subscription-based with some free preview content.</li>
+          <li><a href="https://victorybriefs.com/" target="_blank"><strong>Victory Briefs</strong></a> — well regarded in the LD community in particular; their topic analyses are a staple for understanding both sides of a resolution before you start cutting your own cards.</li>
+        </ul>
+
+        <hr>
+
+        <h3>Disclosure Platforms</h3>
+
+        <h3>What is Tabroom?</h3>
+        <p><a href="https://www.tabroom.com/" target="_blank">Tabroom.com</a> is the platform that runs virtually every high school (and college) tournament in the country — registration, pairings, ballots, and results. You'll use it to sign up for tournaments, check your schedule, and read <strong>judge paradigms</strong> before a round. Reading your judge's paradigm is one of the highest-leverage 10 minutes of prep you can do.</p>
+
+        <h3>What is openCaselist?</h3>
+        <p><a href="https://opencaselist.com/" target="_blank">openCaselist</a> is the premier disclosure platform for high school Policy, LD, and PF. Teams voluntarily post their cases, evidence, and "what we ran" notes from each tournament. You log in with your Tabroom account and browse by format and school. Strong programs — Michigan, Dartmouth, Northwestern, Emory — tend to have detailed pages. Disclosure norms vary by circuit; ask your coach what's expected in your area.</p>
+
+        <hr>
+
+        <h3>Practice and Coaching</h3>
+
+        <h3>What is the NDCA?</h3>
+        <p>The <a href="https://www.ndcaonline.org/" target="_blank">National Debate Coaches Association</a> is a professional organization for debate coaches that hosts its own national championship each spring — considered by many to be the most competitive field in the country outside of the NSDA National Tournament.</p>
+
+        <h3>What about summer camps?</h3>
+        <p>Summer debate institutes are where a lot of serious competitive improvement happens. Well-known programs include:</p>
+        <ul>
+          <li><a href="https://www.michigandebate.com/" target="_blank"><strong>Michigan Debate Institutes (MDI)</strong></a> — one of the largest and most established camps, with programs for all levels and formats</li>
+          <li><a href="https://www.ddidebate.org/" target="_blank"><strong>Dartmouth Debate Institute (DDI)</strong></a> — a rigorous program that contributes heavily to the Open Evidence Project each year</li>
+          <li><a href="https://debate.georgetown.edu/georgetown-debate-seminar/" target="_blank"><strong>Georgetown Debate Seminar</strong></a> — selective, with a strong Policy focus</li>
+          <li><a href="https://www.vbi.io/" target="_blank"><strong>Victory Briefs Institute (VBI)</strong></a> — one of the leading LD and PF camps, with sessions across multiple cities</li>
+        </ul>
+        <p>WDI's own summer institute provides this kind of intensive training specifically for young women — details on our <a href="https://www.womensdebateinstitute.org/student-resources/" target="_blank">programming page</a>.</p>
+
+        <h3>What if I can't attend a summer camp?</h3>
+        <p>The Open Evidence Project and openCaselist together give you access to a significant portion of what camps produce. The <a href="https://www.speechanddebate.org/nsda-campus/" target="_blank">NSDA Campus</a> platform also hosts online practice opportunities and instructional resources.</p>
+
+        <div class="exercise-box">
+          <h4>Try it yourself</h4>
+          <p>Go to <a href="https://www.tabroom.com/" target="_blank">Tabroom.com</a> and look up an upcoming tournament in your area. Find the judge list and read two or three judge paradigms — notice what each judge emphasizes. Then go to <a href="https://www.speechanddebate.org/topics/" target="_blank">speechanddebate.org/topics</a> and find the current resolution for your format. Write one argument for each side — just one sentence each. That's the start of your prep.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- POST 8: College Resources -->
+    <article id="post-8">
+      <div class="post-series">Debate Diaries — Resources</div>
+      <h1 class="post-heading">Where to Go Next: College Debate Resources</h1>
+      <div class="post-meta">By Mishan Pauley</div>
+      <div class="post-body">
+        <p class="lede">If you're heading into college debate — or already there — the ecosystem looks different from high school. The organizations change, the evidence culture runs deeper, and the formats branch further. This post maps the college landscape across Policy, Parliamentary, and beyond.</p>
+
+        <h3>Understanding the College Landscape</h3>
+        <p>College debate in the U.S. doesn't have a single governing body the way high school debate has the NSDA. Instead, it splits into several overlapping organizations by format, with different national championships and regional circuits. The three main formats at the college level are <strong>Policy (NDT/CEDA)</strong>, <strong>Parliamentary (NPDA/NPTE)</strong>, and <strong>IPDA</strong>.</p>
+
+        <hr>
+
+        <h3>College Policy: NDT/CEDA</h3>
+
+        <h3>What is CEDA?</h3>
+        <p>The <a href="https://cedadebate.org/" target="_blank">Cross Examination Debate Association (CEDA)</a> is the largest intercollegiate policy debate organization in the country. It sanctions the year-long policy topic, runs a national championship each spring, and coordinates with the NDT on a shared topic. CEDA also publishes format rules, maintains membership records, and tracks tournament results through its affiliated regional organizations.</p>
+
+        <h3>What is the NDT?</h3>
+        <p>The <a href="https://nationaldebatetournament.org/" target="_blank">National Debate Tournament (NDT)</a> is the most prestigious individual tournament in college policy debate. Entry is selective: teams qualify through at-large bids earned at regular-season invitationals and first-round bids awarded to the top-ranked programs at the end of the season. The NDT and CEDA share a single year-long topic, so preparation is consistent across both championships.</p>
+
+        <h3>What is the ADA?</h3>
+        <p>The <a href="https://www.cross-x.com/ada/" target="_blank">American Debate Association (ADA)</a> runs a parallel national championship on the same NDT/CEDA topic, with a different bid structure and a competitive culture that prioritizes accessibility for programs without the largest coaching staffs. Many programs compete on both the ADA and NDT/CEDA circuits simultaneously.</p>
+
+        <h3>Where does evidence come from at the college level?</h3>
+        <p>The same <a href="https://openev.debatecoaches.org/" target="_blank">Open Evidence Project</a> that serves high school debaters also serves college policy — and in fact, college programs produce the majority of it. If you're coming from high school Policy, this will feel familiar. Browsing a few camp files is the fastest way to understand how college-level arguments are constructed.</p>
+
+        <h3>What is the college openCaselist?</h3>
+        <p><a href="https://opencaselist.com/" target="_blank">openCaselist</a> has a dedicated college policy section and disclosure norms are generally strong on the NDT/CEDA circuit. Log in with your Tabroom account and navigate to the college section. Top programs to look at: Michigan, Gonzaga, Northwestern, Kansas, Louisville, Dartmouth, Georgetown.</p>
+
+        <hr>
+
+        <h3>Parliamentary Debate: NPDA and NPTE</h3>
+
+        <h3>What is the NPDA?</h3>
+        <p>The <a href="https://npdadebate.com/" target="_blank">National Parliamentary Debate Association (NPDA)</a> governs college parli — a format that emphasizes extemporaneous argument-building over card-based evidence. Teams receive a topic immediately before the round and have a short prep window (typically 20 minutes) to build their case from scratch. Parliamentary debate rewards debaters who can think quickly, structure arguments under pressure, and adapt to topics they haven't specifically prepped.</p>
+
+        <h3>What is the NPTE?</h3>
+        <p>The <a href="https://npte.net/" target="_blank">National Parliamentary Tournament of Excellence (NPTE)</a> runs parallel to the NPDA and is considered by many programs to be the more competitive of the two national championships, with stricter qualification standards. Many college parliamentary programs compete at tournaments sanctioned by both organizations.</p>
+
+        <h3>How does evidence work in parliamentary debate?</h3>
+        <p>Unlike policy, parliamentary debate does not rely on pre-researched, citable "cards." Debaters build arguments from general knowledge, logical reasoning, and brief references to well-known facts. This means preparation looks different: less time cutting evidence files, more time building broad familiarity with current events, history, philosophy, and policy across many domains. Publications like <a href="https://www.foreignaffairs.com/" target="_blank"><em>Foreign Affairs</em></a> and <a href="https://www.economist.com/" target="_blank"><em>The Economist</em></a>, and think tanks like the <a href="https://www.cfr.org/" target="_blank">Council on Foreign Relations</a> and <a href="https://www.brookings.edu/" target="_blank">Brookings Institution</a>, are staples.</p>
+
+        <hr>
+
+        <h3>IPDA</h3>
+
+        <h3>What is IPDA?</h3>
+        <p>The <a href="https://ipdadebate.org/" target="_blank">International Public Debate Association</a> runs a format built explicitly for general audience accessibility — rounds are slower, jargon is minimized, and evaluation criteria weight communication and persuasion alongside argumentation. IPDA is common at smaller programs and liberal arts schools, and several programs that compete in NDT/CEDA or NPDA also field IPDA teams.</p>
+
+        <hr>
+
+        <h3>Tournaments and Results</h3>
+
+        <h3>Where do I find tournaments?</h3>
+        <p><a href="https://www.tabroom.com/" target="_blank">Tabroom.com</a> handles registration, pairings, and results for most college tournaments across all formats. Your coach will know which invitationals are most relevant for bid purposes in your format.</p>
+
+        <h3>What are "bid tournaments"?</h3>
+        <p>At the college policy level, certain invitationals are designated as "bid tournaments" where top finishers earn automatic qualification (a "first round bid," or FRB) to the NDT. Non-bid invitationals still count toward the "at-large" qualification process, where programs are ranked by tournament performance at the end of the season.</p>
+
+        <hr>
+
+        <h3>Summer Institutes and Coaching</h3>
+        <p>Summer institutes at the college level serve two functions: they train debaters and produce evidence. Well-known programs include:</p>
+        <ul>
+          <li><a href="https://www.ddidebate.org/" target="_blank"><strong>Dartmouth Debate Institute (DDI)</strong></a> — one of the most prolific contributors to the Open Evidence Project, with programs for both high school and college debaters</li>
+          <li><a href="https://debate.georgetown.edu/georgetown-debate-seminar/" target="_blank"><strong>Georgetown Debate Seminar</strong></a> — selective, Policy-focused, with strong NDT/CEDA placement</li>
+          <li><a href="https://www.michigandebate.com/" target="_blank"><strong>University of Michigan Debate Institutes</strong></a> — among the largest and most established, with multiple tracks across formats and experience levels</li>
+          <li><a href="https://class.unt.edu/communication/debate" target="_blank"><strong>UNT Mean Green Comet Debate Institute</strong></a> — a strong policy program with deep roots in the CEDA circuit</li>
+        </ul>
+
+        <h3>Staying Current</h3>
+        <p><a href="https://www.cross-x.com/" target="_blank">Cross-X.com</a> has been a long-running forum for discussion, evidence sharing, and community news across formats — particularly policy. It's a useful place to follow ongoing debates about the direction of the activity and to find community conversation around current topics.</p>
+
+        <div class="exercise-box">
+          <h4>Try it yourself</h4>
+          <p>Take 20 minutes to do three things:</p>
+          <ul style="margin-top: 0.75rem;">
+            <li>Go to <a href="https://cedadebate.org/" target="_blank">cedadebate.org</a> or <a href="https://npdadebate.com/" target="_blank">npdadebate.com</a> (depending on your format) and find the current season's topic.</li>
+            <li>Go to <a href="https://opencaselist.com/" target="_blank">opencaselist.com</a> and find the page for a program known for competing in your format. Browse what they ran at their most recent tournament.</li>
+            <li>Go to <a href="https://www.tabroom.com/" target="_blank">tabroom.com</a> and find an upcoming tournament your program might attend. Read one judge paradigm from the judge pool.</li>
+          </ul>
+          <p style="margin-top: 0.75rem;">That's the landscape. The rest is practice.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- POST 9: In-Round Practice HS -->
+    <article id="post-9">
+      <div class="post-series">Debate Diaries — Practice</div>
+      <h1 class="post-heading">In-Round Practice for High School Debaters</h1>
+      <div class="post-meta">By Mishan Pauley</div>
+      <div class="post-body">
+        <p class="lede">Knowing the rules, formats, and resources is only half the work. The other half is what happens when you're actually in the round — managing prep time, flowing your opponent's arguments, executing cross-examination, and making decisions under pressure.</p>
+
+        <h3>Flowing</h3>
+        <p>Flowing is the practice of taking structured notes on every argument made in a round — tracking who said what, when, and whether it was answered. It's the single most important in-round skill, and it's almost entirely learned through repetition.</p>
+
+        <h3>What does a good flow look like?</h3>
+        <p>A flow is organized in columns, one per speech, moving left to right. Each argument from the first speech gets its own row, and responses in later speeches get written in the same row, one column over. At a glance, you can see which arguments are alive (unanswered), which have been responded to, and which have been dropped.</p>
+        <p>Most debaters use shorthand — abbreviated symbols and phrases that let them write fast without losing meaning. Common examples: "∴" for "therefore," "→" for "leads to," "≠" for "doesn't apply," "X" for a dropped argument.</p>
+
+        <h3>Flowing exercises</h3>
+        <p><strong>Exercise 1: Flow a recorded debate.</strong> Find a recorded debate on YouTube — NDT rounds, NSDA national finals, and PF championship rounds are all publicly available. Play it and flow in real time. Don't pause. When it's over, identify where you fell behind and what you missed. Do this once a week.</p>
+        <p><strong>Exercise 2: Flow a speech, then summarize.</strong> Have a teammate read a prepared case while you flow. When they're done, put the flow face down and give a one-minute verbal summary of every argument they made. This tests whether your notes captured what mattered, not just what was said.</p>
+        <p><strong>Exercise 3: Flowing under pressure.</strong> Have a partner read arguments at progressively faster speeds. Start slow enough to catch everything, then increase speed until you're dropping arguments. Work on identifying which arguments are most important to catch when you can't get everything.</p>
+        <p><strong>Exercise 4: Speed differentiation.</strong> Practice flagging the 2–3 most important arguments on your flow in real time — circling or starring as you go — so that when you stand up to speak, you already know what to prioritize.</p>
+
+        <hr>
+
+        <h3>Prep Time Management</h3>
+        <p>Prep time is one of the most underused strategic tools in debate. In LD, that's typically 4 minutes; in PF, 2–3 minutes per team; in Policy, 8 minutes. The most common mistake is using prep time reactively — staring at your flow and scrambling to figure out what to say. The better approach is to have a plan before prep time starts.</p>
+
+        <p><strong>Exercise 1: Pre-speech checklists.</strong> Before each speech in practice, write a 3-item checklist of what you need to accomplish. Practice generating that list immediately when prep starts rather than reviewing notes passively.</p>
+        <p><strong>Exercise 2: Timed prep runs.</strong> In practice rounds, enforce strict prep time limits. Gradually reduce them. When you have 90 seconds instead of 4 minutes, you quickly learn which preparation steps matter most.</p>
+        <p><strong>Exercise 3: The "what am I winning?" audit.</strong> Teach yourself to ask one question at the start of every prep period: <em>"What am I winning right now?"</em> This reorients you from reactive to strategic. Your speech should extend what you're winning and collapse away from what you're not.</p>
+        <p><strong>Exercise 4: Out-loud prep.</strong> Use part of prep time speaking out loud — not performing the speech, but talking through your argument structure. "I'm going to start with X because they didn't answer it, then go to Y, then close on Z." This catches logical gaps before you're mid-speech.</p>
+
+        <hr>
+
+        <h3>Cross-Examination Practice</h3>
+        <p>CX is a strategic tool, not a performance. Its primary functions are: clarifying your opponent's argument so you can answer it more precisely, exposing weaknesses in their evidence or reasoning, and setting up arguments you'll make in the next speech.</p>
+
+        <p><strong>Exercise 1: Targeted question prep.</strong> Before a practice round, write 5 questions you'd want to ask if they run a specific argument. Build the habit of entering CX with a plan.</p>
+        <p><strong>Exercise 2: "What does your evidence say?" drills.</strong> After your partner reads a case, your only job in CX is to ask questions about the evidence — who wrote it, when, what it actually claims. This forces both debaters to know their cards deeply.</p>
+        <p><strong>Exercise 3: One-question limit.</strong> Do a CX period where the questioner can only ask one question before the respondent answers and must follow up — no compound questions. This builds concision and teaches you to listen carefully to the answer before deciding your next move.</p>
+        <p><strong>Exercise 4: Cross-ex from both sides simultaneously.</strong> Have two pairs practice CX at the same time on the same case, then debrief: which questions were more effective and why? Comparing approaches builds awareness of strategic options you might not have considered.</p>
+
+        <hr>
+
+        <h3>Rebuttal and Collapse Practice</h3>
+        <p><strong>Exercise 1: The "two-argument rebuttal."</strong> Practice giving a rebuttal where you're only allowed to go for two arguments. This forces a genuine strategic judgment about what matters most.</p>
+        <p><strong>Exercise 2: Rebuttal without prep time.</strong> After a constructive speech in practice, give the rebuttal with zero prep time. This forces you to flow strategically in real time rather than relying on prep to sort out your thoughts.</p>
+        <p><strong>Exercise 3: "Explain it to a non-debater."</strong> After a rebuttal, have a teammate who wasn't in the round summarize what they heard. If they can identify the 2–3 key arguments and why each side is winning or losing, your rebuttal is clear enough.</p>
+
+        <hr>
+
+        <h3>Deliberate Practice Round Structure</h3>
+        <ul>
+          <li><strong>Pre-round brief (5 min):</strong> Each debater states one skill they're specifically working on during this round.</li>
+          <li><strong>Round:</strong> Full time limits and strict prep time enforcement.</li>
+          <li><strong>Immediate flow review (10 min):</strong> Both debaters lay their flows on the table and compare. Where did arguments get dropped that shouldn't have been?</li>
+          <li><strong>Speech-by-speech debrief (15 min):</strong> For each speech: what was the goal, was it achieved, and what would you change?</li>
+          <li><strong>One takeaway per debater:</strong> Name one specific, actionable thing you'll do differently in the next practice round.</li>
+        </ul>
+
+        <div class="exercise-box">
+          <h4>Try it yourself</h4>
+          <p>Pick one exercise from this post and do it before your next practice round. The flowing exercises require nothing more than a recording and a piece of paper. Start there. Flow something today — that's the highest-leverage 30 minutes you can spend right now.</p>
+          <p style="margin-top: 0.75rem;">Format rules and prep time norms are governed by NSDA at the high school level. Always confirm with your coach and check the current rulebook at <a href="https://www.speechanddebate.org/resources/" target="_blank">speechanddebate.org/resources</a>.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- POST 10: In-Round Practice College -->
+    <article id="post-10">
+      <div class="post-series">Debate Diaries — Practice</div>
+      <h1 class="post-heading">In-Round Practice for College Debaters</h1>
+      <div class="post-meta">By Mishan Pauley</div>
+      <div class="post-body">
+        <p class="lede">College debate raises the stakes on every in-round skill. The speeches are longer, the arguments are more technical, the evidence is denser, and the rounds move faster. The teams that close the gap between knowing their arguments and executing under pressure are the ones that treat practice as seriously as tournament prep.</p>
+
+        <h3>Flowing at the College Level</h3>
+        <p>In college policy, you're often flowing multiple sheets simultaneously — one for the 1AC, separate sheets for each off-case position (DAs, CPs, Ks), and potentially additional sheets for theory arguments. Parliamentary debate presents a different challenge: arguments are less formulaic, so your flow has to adapt to whatever structure your opponent chooses.</p>
+
+        <p><strong>Exercise 1: Flow NDT/CEDA rounds at speed.</strong> Full rounds from the NDT and CEDA Championships are available on YouTube and through university debate program archives. Flow them without pausing. The goal isn't to capture everything — it's to identify what's essential and build the instinct for what can be abbreviated without strategic cost.</p>
+        <p><strong>Exercise 2: Multi-sheet management drill.</strong> Run a practice round with a full neg block — 1NC with two or three off-case positions. Practice tracking each position on its own sheet while simultaneously flowing the 2AC responses. Compare your sheets to a recording afterward.</p>
+        <p><strong>Exercise 3: Flow, then reconstruct.</strong> Flow a speech in practice. Then, without looking at your flow, reconstruct the argument structure from memory. This tests whether you understood what was said or just transcribed it — a critical distinction at the college level.</p>
+        <p><strong>Exercise 4: Parliamentary improvisation flowing.</strong> Have a partner give an improvised speech on a topic they've had 60 seconds to prep. Flow it. This builds flexibility in how you organize a flow when arguments don't follow a standard structure.</p>
+
+        <p><strong>Recommended tool:</strong> Many college policy debaters use <a href="https://paperlessdebate.com/" target="_blank">Verbatim</a> — a free Word-based flowing tool specifically designed for policy debate that automatically formats columns and handles multi-sheet navigation. Check your tournament's rules before using electronics in round.</p>
+
+        <hr>
+
+        <h3>Prep Time at the College Level</h3>
+        <p>College policy gives each team 8 minutes of prep time. Parliamentary debate typically gives much less — often 1–2 minutes between speeches — which puts a premium on real-time organization. At the college level, prep time should be for <em>adapting</em>, not creating. If you're writing arguments from scratch during prep, your out-of-round preparation needs more work.</p>
+
+        <p><strong>Exercise 1: Block drilling.</strong> Have a partner call out an argument (e.g., "topicality on 'increase'") and deliver the block from memory. Is it fast enough? Precise enough? Does it actually answer the argument? Build a block file and drill it regularly throughout the season.</p>
+        <p><strong>Exercise 2: Timed collapse decisions.</strong> At the start of the 2NR or 2AR prep period in practice, give yourself 60 seconds to decide — out loud — what you're going for and why. "I'm going for the politics DA because they didn't have a non-unique and their impact turn is shaky. I'm dropping the CP because their permutation argument is good." Make the decision, then write the speech around it.</p>
+        <p><strong>Exercise 3: Partner alignment check.</strong> In policy, the 2NC/1NR split means both partners need to agree on which positions each is covering before those speeches happen. Practice making that decision in 30 seconds or less with a rationale both debaters can articulate.</p>
+        <p><strong>Exercise 4: Parliamentary prep simulation.</strong> Give a partner a topic, start a timer, and spend 20 minutes constructing a full case from scratch. Then deliver it. Debrief: which arguments were underdeveloped because of time pressure, and how do you prioritize when the clock is running?</p>
+
+        <hr>
+
+        <h3>Cross-Examination at the College Level</h3>
+        <p>The best cross-examiners at the college level know exactly what they're trying to accomplish before they ask the first question. They enter CX with a list of 3–4 goals and work toward those goals even if the respondent is evasive. They're not performing — they're building the 2AC or 2NC.</p>
+
+        <p><strong>Exercise 1: Evidence cross-ex under pressure.</strong> Have your partner read a dense policy card from a camp file. Your job in CX is to fully understand what it says: what is the claim, what's the methodology, what's the date, and what does it <em>not</em> say? This is the foundational skill for running evidence comparison arguments in later speeches.</p>
+        <p><strong>Exercise 2: Kritik CX simulation.</strong> If your team runs Ks, practice the specific CX challenges a K faces — opponents will ask about the alternative, the link story, and what the world looks like if the K wins. Prepare clear, non-evasive answers and practice delivering them under adversarial questioning.</p>
+        <p><strong>Exercise 3: Flowing CX.</strong> Most debaters don't flow cross-ex carefully. Practice flowing CX — every question and every answer — and review those notes immediately before your next speech. CX concessions are underused in college debate and can be decisive in close rounds.</p>
+        <p><strong>Exercise 4: Adversarial CX practice.</strong> Have a more experienced debater or coach run CX against you on your own case as aggressively as possible — pushing on every weak point, demanding specificity on vague claims, pressuring you on evidence quality. Being uncomfortable in practice is the cheapest way to be prepared for it in round.</p>
+
+        <hr>
+
+        <h3>The 1AR: Building the Hardest Speech in Debate</h3>
+        <p>The First Affirmative Rebuttal is widely considered the most difficult speech in college policy debate: 8 minutes of neg offense, 8 minutes to answer it. Teams that win the 1AR consistently win a disproportionate share of rounds.</p>
+
+        <p><strong>Exercise 1: Timed 1AR drilling.</strong> Run a full 1NC in practice and give the 1AR with no prep time. This simulates real pressure and forces you to flow strategically during the 1NC rather than counting on prep to organize your response. Do this weekly.</p>
+        <p><strong>Exercise 2: 1AR prioritization.</strong> After a practice 1NC, use your prep time to write a ranked list of arguments from most to least important to answer. Then give the 1AR in that order and stop when time runs out. Were the things you left out actually the least important?</p>
+        <p><strong>Exercise 3: Block execution.</strong> Identify the 10 arguments you're most likely to face this season and drill the block for each one until you can deliver it clearly in under 60 seconds. The block doesn't need to be read verbatim — it needs to be fast and precise.</p>
+
+        <hr>
+
+        <h3>Deliberate Practice Round Structure for College Teams</h3>
+        <ul>
+          <li><strong>Pre-round assignment (5 min):</strong> Each debater names one technical skill they're working on — not a strategic goal, but a specific skill.</li>
+          <li><strong>Round with strict enforcement:</strong> No stopping the clock, no out-of-round communication. Treat it like a tournament round.</li>
+          <li><strong>Flow comparison (10 min):</strong> All four debaters lay their flows on the table. Where did flows diverge? Did the 2NR's flow match the 2NR's speech?</li>
+          <li><strong>Speech-by-speech review:</strong> Walk through each speech. Identify one moment where a different choice — pacing, prioritization, word choice — would have changed the round.</li>
+          <li><strong>Block audit:</strong> After the round, identify any argument you didn't have a prepared block for. Add it to your block file before the next practice.</li>
+        </ul>
+
+        <p>If your program is small, reach out to nearby programs about scrimmage rounds. The <a href="https://cedadebate.org/" target="_blank">CEDA</a> and <a href="https://npdadebate.com/" target="_blank">NPDA</a> websites list member programs — a starting point for finding programs in your region.</p>
+
+        <div class="exercise-box">
+          <h4>Try it yourself</h4>
+          <p>If you're a policy debater: download <a href="https://paperlessdebate.com/" target="_blank">Verbatim</a> and flow your next practice round on it. If you're a parliamentary debater: give yourself a topic right now, set a 20-minute timer, and build a full case from scratch. Don't look anything up. When the timer goes off, deliver the speech out loud.</p>
+          <p style="margin-top: 0.75rem;">The in-round skills that win rounds at the college level aren't developed in tournament rounds — they're developed in the practice rounds before them.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- POST 11: Flowing HS -->
+    <article id="post-11">
+      <div class="post-series">Debate Diaries — Practice</div>
+      <h1 class="post-heading">In-Round Practice Part 2: Flowing for High School Debaters</h1>
+      <div class="post-meta">By Mishan Pauley</div>
+      <div class="post-body">
+        <p class="lede">This post is dedicated entirely to flowing — the note-taking system that makes everything else in a round possible. If you're new to debate, think of your flow as a real-time map of the round: who argued what, when, and whether it was answered. Without it, you're debating from memory. With it, you're debating from evidence.</p>
+
+        <h3>What Is Flowing, and Why Does It Matter?</h3>
+        <p>In a competitive debate round, arguments build on each other across multiple speeches. A dropped argument — one your opponent made that you never responded to — is one of the most common ways to lose a round you could have won. The flow is your protection against that.</p>
+        <p>Your flow is a structured, column-based note system where each column represents one speech, each row represents one argument, and you write responses in the same row as the argument they're responding to. At a glance, you can see which arguments have been fully answered, which partially answered, and which dropped entirely.</p>
+
+        <h3>Setting Up Your Flow</h3>
+        <p>Use landscape-orientation paper — standard notebook paper turned sideways gives you more column space. Draw your columns before the round starts, label each one with the speech abbreviation at the top, and leave more horizontal space for longer speeches. <strong>You do not need to write in complete sentences. Ever.</strong> Your flow is for you, not the judge. Abbreviate aggressively.</p>
+
+        <h3>Shorthand: The Foundation of Fast Flowing</h3>
+        <p>The goal of shorthand is to write the idea, not the words. Start with these and build your own system:</p>
+        <ul>
+          <li><strong>→</strong> leads to / causes &nbsp;·&nbsp; <strong>∴</strong> therefore &nbsp;·&nbsp; <strong>↑↓</strong> increases / decreases</li>
+          <li><strong>≠</strong> doesn't / is not &nbsp;·&nbsp; <strong>X</strong> dropped &nbsp;·&nbsp; <strong>✓</strong> conceded &nbsp;·&nbsp; <strong>*</strong> important</li>
+          <li><strong>ev</strong> evidence &nbsp;·&nbsp; <strong>arg</strong> argument &nbsp;·&nbsp; <strong>res</strong> resolution &nbsp;·&nbsp; <strong>imp</strong> impact</li>
+          <li><strong>ext</strong> extend &nbsp;·&nbsp; <strong>trn</strong> turn &nbsp;·&nbsp; <strong>dp</strong> drop &nbsp;·&nbsp; <strong>lk</strong> link &nbsp;·&nbsp; <strong>UQ</strong> uniqueness</li>
+        </ul>
+        <p>Don't try to memorize 40 symbols before your first practice round. Start with 5–10 and add more as you get comfortable.</p>
+
+        <hr>
+
+        <h3>Lincoln-Douglas: Speech Times and Flow Tips</h3>
+        <table class="speech-table">
+          <thead><tr><th>Speech</th><th>Time</th><th>What to expect</th></tr></thead>
+          <tbody>
+            <tr><td>Affirmative Constructive (AC)</td><td>6 min</td><td>Framework (value + criterion) + 2–3 contentions</td></tr>
+            <tr><td>Cross-Ex by Neg</td><td>3 min</td><td>Track key admissions in the margin</td></tr>
+            <tr><td>Negative Constructive (NC)</td><td>7 min</td><td>Neg framework + responses to AC + neg contentions</td></tr>
+            <tr><td>Cross-Ex by Aff</td><td>3 min</td><td>Track key admissions in the margin</td></tr>
+            <tr><td>1st Affirmative Rebuttal (1AR)</td><td>4 min</td><td>Aff responds to everything in the NC</td></tr>
+            <tr><td>Negative Rebuttal (NR)</td><td>6 min</td><td>Neg collapses and extends</td></tr>
+            <tr><td>2nd Affirmative Rebuttal (2AR)</td><td>3 min</td><td>Aff's final speech — extend what you're winning</td></tr>
+          </tbody>
+        </table>
+        <p><em>Prep time: 4 minutes per debater, used at any point before their speeches.</em></p>
+        <p>The AC runs 6 minutes. If your opponent has 2–3 contentions and a framework, that's roughly 1.5–2 minutes per contention. Use that math to pace your flowing — if you're still writing one contention when they've moved to the next, abbreviate faster. The NC at 7 minutes is the most complex to flow — use two sections: one for responses to your AC, one for neg contentions. The 1AR at just 4 minutes is the most demanding speech to flow because the most is happening the fastest.</p>
+
+        <hr>
+
+        <h3>Public Forum: Speech Times and Flow Tips</h3>
+        <table class="speech-table">
+          <thead><tr><th>Speech</th><th>Time</th><th>What to expect</th></tr></thead>
+          <tbody>
+            <tr><td>Team A Case</td><td>4 min</td><td>2–3 contentions with evidence</td></tr>
+            <tr><td>Team B Case</td><td>4 min</td><td>2–3 contentions with evidence</td></tr>
+            <tr><td>Crossfire (A & B)</td><td>3 min</td><td>Note key exchanges in margin</td></tr>
+            <tr><td>Team A Rebuttal</td><td>4 min</td><td>A attacks B's case</td></tr>
+            <tr><td>Team B Rebuttal</td><td>4 min</td><td>B attacks A's case + responds to A's rebuttal</td></tr>
+            <tr><td>Crossfire (A & B)</td><td>3 min</td><td>Note what's being contested</td></tr>
+            <tr><td>Team A Summary</td><td>2 min</td><td>A narrows to best arguments</td></tr>
+            <tr><td>Team B Summary</td><td>2 min</td><td>B narrows to best arguments</td></tr>
+            <tr><td>Grand Crossfire (all four)</td><td>3 min</td><td>Note what each team is emphasizing</td></tr>
+            <tr><td>Team A Final Focus</td><td>2 min</td><td>A's final voters</td></tr>
+            <tr><td>Team B Final Focus</td><td>2 min</td><td>B's final voters</td></tr>
+          </tbody>
+        </table>
+        <p><em>Prep time: 2 minutes per team.</em></p>
+        <p>PF flows run parallel — track Team A's case and Team B's case in separate sections. For case speeches, capture the claim and the source: "China econ decline → US recession (Smith, 2023)" is enough. The 2-minute Summary and Final Focus move fast — by this point, the round should be narrowing. If you're tracking 10 arguments in Summary, something went wrong earlier.</p>
+
+        <hr>
+
+        <h3>Policy: Speech Times and Flow Tips</h3>
+        <table class="speech-table">
+          <thead><tr><th>Speech</th><th>Time</th><th>What to expect</th></tr></thead>
+          <tbody>
+            <tr><td>1st Affirmative Constructive (1AC)</td><td>8 min</td><td>Plan + advantages</td></tr>
+            <tr><td>Cross-Ex by 2nd Neg</td><td>3 min</td><td></td></tr>
+            <tr><td>1st Negative Constructive (1NC)</td><td>8 min</td><td>Off-case positions + on-case responses</td></tr>
+            <tr><td>Cross-Ex by 1st Aff</td><td>3 min</td><td></td></tr>
+            <tr><td>2nd Affirmative Constructive (2AC)</td><td>8 min</td><td>Responds to all neg positions + extends aff</td></tr>
+            <tr><td>Cross-Ex by 1st Neg</td><td>3 min</td><td></td></tr>
+            <tr><td>2nd Negative Constructive (2NC)</td><td>8 min</td><td>Splits with 1NR — deep on selected positions</td></tr>
+            <tr><td>Cross-Ex by 2nd Aff</td><td>3 min</td><td></td></tr>
+            <tr><td>1st Negative Rebuttal (1NR)</td><td>5 min</td><td>Covers positions 2NC left behind</td></tr>
+            <tr><td>1st Affirmative Rebuttal (1AR)</td><td>8 min</td><td>Answers the full neg block</td></tr>
+            <tr><td>2nd Negative Rebuttal (2NR)</td><td>5 min</td><td>Neg collapses to 1–2 issues</td></tr>
+            <tr><td>2nd Affirmative Rebuttal (2AR)</td><td>5 min</td><td>Aff extends and closes</td></tr>
+          </tbody>
+        </table>
+        <p><em>Prep time: 8 minutes per team.</em></p>
+        <p>Use a separate sheet for each position: one for the 1AC/on-case debate, one per off-case position. When the neg announces a new position, flip to a new sheet immediately. The 2NC/1NR split means two speakers cover different arguments — flow them as continuous, connecting the same rows across both columns.</p>
+
+        <hr>
+
+        <h3>Timing-Based Exercises</h3>
+        <p><strong>Exercise 1: The 4-minute drill.</strong> Set a timer for 4 minutes (matching PF Summary / LD 1AR). Have a partner speak continuously while you flow. At the end, you have 30 seconds to circle the three most important arguments. Repeat until you can identify them before the timer goes off.</p>
+        <p><strong>Exercise 2: The 8-minute wall.</strong> Set a timer for 8 minutes and have a partner read a full policy case at normal speed. Flow without stopping. Afterward, count how many arguments you fully captured. Repeat weekly — most debaters see significant improvement within 3–4 sessions.</p>
+        <p><strong>Exercise 3: The 2-minute close.</strong> At the end of a practice round, give yourself 60 seconds to identify — in writing — the single strongest voting issue on your flow. Clarity at the end of a round starts with a clean flow throughout it.</p>
+        <p><strong>Exercise 4: Cross-ex margin notes.</strong> During your next practice round, track cross-examination notes in the margin next to the argument being questioned. After the round, mark every exchange where something was conceded. How many did you reference in your speeches?</p>
+
+        <h3>Common Mistakes</h3>
+        <p><em>Writing too much.</em> If you're writing more than 5 words for a single argument, it's too many. Force yourself to abbreviate more.</p>
+        <p><em>Losing track of which column you're in.</em> Before each speech, draw a clear vertical line and label it at the top.</p>
+        <p><em>Not flowing cross-examination.</em> Key concessions made in CX can be cited in your next speech. Note at least the most important exchanges in the margin.</p>
+        <p><em>Flowing the last thing said instead of the most important.</em> Train yourself to flag high-impact arguments as they're made, not just transcribe in order.</p>
+
+        <div class="exercise-box">
+          <h4>Try it yourself</h4>
+          <p>Go to YouTube and search "NSDA national final [LD / PF / Policy]" for your format. Find a recent final round. Set up your paper landscape, draw your columns, and flow the first two speeches cold — no pausing, no rewind. Count how many arguments you captured versus how many were made. That gap is what you're working to close.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- POST 12: Flowing College -->
+    <article id="post-12">
+      <div class="post-series">Debate Diaries — Practice</div>
+      <h1 class="post-heading">In-Round Practice Part 2: Advanced Flowing for College Debaters</h1>
+      <div class="post-meta">By Mishan Pauley</div>
+      <div class="post-body">
+        <p class="lede">If you've been flowing for a season or two, you already understand the basics. This post is for the next level: flowing at the speed and complexity of college competition, managing multi-position policy flows, adapting to parliamentary improvisation, and using your flow as a strategic instrument rather than just a record-keeping tool.</p>
+
+        <h3>Why Advanced Flowing Is Different</h3>
+        <p>At the high school level, flowing is primarily about keeping up. At the college level, it becomes about making decisions in real time. The best college flowrers are doing four things at once: writing, listening, evaluating, and planning. That's not a natural skill — it's built through deliberate practice over hundreds of rounds.</p>
+
+        <hr>
+
+        <h3>College Policy (NDT/CEDA): Speech Times and Advanced Flow Tips</h3>
+        <table class="speech-table">
+          <thead><tr><th>Speech</th><th>Time</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>1st Affirmative Constructive (1AC)</td><td>8 min</td><td>Fully prepared — flow every advantage and plan plank</td></tr>
+            <tr><td>Cross-Ex by 2nd Neg</td><td>3 min</td><td>Note admissions in margin</td></tr>
+            <tr><td>1st Negative Constructive (1NC)</td><td>8 min</td><td>Multiple off-case positions — separate sheet per position</td></tr>
+            <tr><td>Cross-Ex by 1st Aff</td><td>3 min</td><td></td></tr>
+            <tr><td>2nd Affirmative Constructive (2AC)</td><td>8 min</td><td>Responds to all neg positions + extends 1AC</td></tr>
+            <tr><td>Cross-Ex by 1st Neg</td><td>3 min</td><td></td></tr>
+            <tr><td>2nd Negative Constructive (2NC)</td><td>8 min</td><td>Splits with 1NR — deep on selected positions</td></tr>
+            <tr><td>Cross-Ex by 2nd Aff</td><td>3 min</td><td></td></tr>
+            <tr><td>1st Negative Rebuttal (1NR)</td><td>5 min</td><td>Covers positions 2NC left behind</td></tr>
+            <tr><td>1st Affirmative Rebuttal (1AR)</td><td>8 min</td><td>Answers the full neg block — the hardest speech</td></tr>
+            <tr><td>2nd Negative Rebuttal (2NR)</td><td>5 min</td><td>Neg collapses to 1–2 issues</td></tr>
+            <tr><td>2nd Affirmative Rebuttal (2AR)</td><td>5 min</td><td>Aff extends and closes</td></tr>
+          </tbody>
+        </table>
+        <p><em>Prep time: 8 minutes per team — used strategically, not exhausted.</em></p>
+
+        <p><strong>Off-case density.</strong> A college 1NC might run 4–6 off-case positions. When the neg announces a new position, immediately flip to a new sheet and label it. Don't track all positions on one sheet — you'll lose track of responses during the 2AC.</p>
+        <p><strong>Evidence depth.</strong> College cards are longer and more technical. Capture the claim and the warrant, not just the tag. "Smith '23 — racial disparity → equal protection violation" is what you want. The warrant is often where the 2AC runs its answer — if you didn't capture it, you'll miss why their response is relevant.</p>
+        <p><strong>Kritik flows.</strong> Ks have four sections: link, impact, alternative, and framework. Flow each clearly labeled. The alternative and framework are the most commonly underdeveloped parts of K flows — and the most contested in rebuttals.</p>
+        <p><strong>The 2NC/1NR split.</strong> Flow the block as continuous — the 2NC and 1NR columns connect to the same rows for each position. After the block, you should be able to read: 2AC answer → 2NC response → 1NR extension, all in the same row. Practice the split specifically until it's automatic.</p>
+        <p><strong>Tool:</strong> Most competitive college policy debaters flow on <a href="https://paperlessdebate.com/" target="_blank">Verbatim</a> — a free Word macro that automatically creates columns and handles multi-sheet navigation via tabs. Learn it before the season starts.</p>
+
+        <hr>
+
+        <h3>College Parliamentary (NPDA): Speech Times and Flow Tips</h3>
+        <table class="speech-table">
+          <thead><tr><th>Speech</th><th>Time</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Prime Minister Constructive (PMC)</td><td>7 min</td><td>Defines resolution, builds Gov case</td></tr>
+            <tr><td>Leader of Opposition Constructive (LOC)</td><td>8 min</td><td>Challenges definition if needed, builds Opp case</td></tr>
+            <tr><td>Member of Government (MG)</td><td>8 min</td><td>Extends Gov, responds to LOC</td></tr>
+            <tr><td>Member of Opposition (MO)</td><td>8 min</td><td>Extends Opp, responds to MG — no new args after this</td></tr>
+            <tr><td>Leader of Opposition Rebuttal (LOR)</td><td>4 min</td><td>Opp voting issues — no new arguments</td></tr>
+            <tr><td>Prime Minister Rebuttal (PMR)</td><td>5 min</td><td>Gov's final speech — no new arguments</td></tr>
+          </tbody>
+        </table>
+        <p><em>Prep time: 3 minutes per team, given before the round — not between speeches.</em></p>
+
+        <p><strong>No pre-set argument structure.</strong> Parliamentary debaters build cases extemporaneously. Your rows need to follow the speaker's logic, not a predetermined format. Identify argument breaks from changes in topic, tone, or logical structure rather than from explicit signposting.</p>
+        <p><strong>Points of Information (POIs).</strong> After the first minute and before the last minute of each speech, the opposing team may stand and offer a POI. Note accepted POIs on your flow next to the argument being discussed — they're often strategically significant and set up arguments in later speeches.</p>
+        <p><strong>Definition disputes.</strong> If the Opposition challenges the Government's definition of the resolution, track this on a separate section of your flow. Definition disputes that aren't resolved cleanly can contaminate the rest of the round.</p>
+        <p><strong>Flowing the LOR and PMR.</strong> By the final speeches, the round should narrow to 2–3 voting issues. If a team appears to be introducing new arguments in the LOR or PMR, flag it — judges typically will not consider new arguments raised in the final rebuttals.</p>
+
+        <hr>
+
+        <h3>Advanced Flowing Exercises</h3>
+
+        <p><strong>Exercise 1: The 8-minute multi-sheet drill.</strong> Set a timer for 8 minutes. Have a partner deliver a mock 1NC with three off-case positions — a DA, a K, and a T. Start a new sheet for each position when announced. Evaluate: are all three labeled? Are the argument structures (link/impact/alt for the K; UQ/link/impact for the DA) legible? Repeat until the multi-sheet transition is automatic.</p>
+
+        <p><strong>Exercise 2: Parliamentary improv flow.</strong> Give a partner an unfamiliar resolution. Give them 2 minutes to prep, then have them deliver a 7-minute PMC with no materials. Flow it. Practice identifying argument breaks from structure and logic rather than from signposting like "my first contention is…"</p>
+
+        <p><strong>Exercise 3: The block comparison drill.</strong> Run a practice block: one partner delivers an 8-minute 2NC, the other a 5-minute 1NR. After, both debaters compare their flows. Did each correctly track what the other covered? Are the rows aligned? This targets the most common structural breakdown in college policy.</p>
+
+        <p><strong>Exercise 4: Rebuttal flow reconstruction.</strong> At the end of a practice round, without looking at your flow, write from memory what the final rebuttal speech was supposed to accomplish and what it actually accomplished. Then compare to your flow. The gap between what you thought happened and what actually happened measures your real-time strategic awareness.</p>
+
+        <p><strong>Exercise 5: Kritik flow drilling.</strong> Take a K from the Open Evidence Project — cap, security, anthro, etc. — and flow it as if hearing it for the first time. Focus on link, impact, alternative, and framework as separate labeled sections. Then flow the 2AC responses on the same sheet. K flows collapse when debaters can't track which 2AC answer responds to which K component.</p>
+
+        <hr>
+
+        <h3>Using Your Flow as a Strategic Instrument</h3>
+
+        <p><strong>The "alive/dead" audit.</strong> At the end of every speech in a practice round, take 10 seconds to scan your flow and mark each argument as alive (unanswered), partially answered, or dead. This real-time triage is what allows you to make collapse decisions quickly.</p>
+
+        <p><strong>Flagging impact calculus.</strong> When you see an impact on your flow, immediately note its key characteristics: magnitude, probability, timeframe. "extinction / certain / 10yr" takes 2 seconds to write and makes 2NR/PMR argument construction significantly faster.</p>
+
+        <p><strong>Tracking concessions.</strong> Concessions — arguments your opponent made that you agreed with, explicitly or by silence — are the most underused information on any flow. Mark them clearly (✓ or "cxd") and reference them explicitly in your speech: "They conceded in the 1NC that our solvency evidence is accurate."</p>
+
+        <p><strong>Flow divergence as a diagnostic.</strong> When both partners compare flows after a practice round, divergences reveal problems. Consistent divergence in the same direction tells you who needs more flowing practice and what kind.</p>
+
+        <div class="exercise-box">
+          <h4>Try it yourself</h4>
+          <p>Policy debaters: do Exercise 1 this week — the 8-minute multi-sheet drill. Parliamentary debaters: do Exercise 2 — the PMC improv flow. Use actual speech times. Treat it like a tournament round.</p>
+          <p style="margin-top: 0.75rem;"><strong>Resources:</strong> <a href="https://paperlessdebate.com/" target="_blank">Verbatim</a> (free, for policy flowing) · <a href="https://www.youtube.com/@NDTDebate" target="_blank">NDT YouTube channel</a> (archived rounds for practice) · <a href="https://npdadebate.com/" target="_blank">NPDA website</a> (parliamentary rounds and resources)</p>
+        </div>
+      </div>
+    </article>
+
+    <article id="post-13">
+      <header class="article-header">
+        <div class="article-meta">Practice · Prep Time</div>
+        <h1 class="article-title">Prep Time Management: High School</h1>
+        <div class="article-byline">By Mishan Pauley</div>
+      </header>
+      <div class="article-body">
+        <p class="lede">Prep time is one of the most consequential tools in a debate round — and one of the most wasted. Most high school debaters treat it as a moment to catch their breath. The best debaters treat it as a second round happening in parallel, where strategic decisions get made before the speech even starts.</p>
+
+        <h2>What Is Prep Time?</h2>
+        <p>Prep time is a fixed bank of time each debater or team can use across the round — outside of the speech itself — to organize their thoughts, write arguments, and decide what to do next. You can usually take it in pieces: a minute here, two minutes there, whenever it makes sense strategically.</p>
+        <p>How much you get depends on your format:</p>
+        <table class="speech-table">
+          <thead><tr><th>Format</th><th>Prep Time</th></tr></thead>
+          <tbody>
+            <tr><td>Lincoln-Douglas (LD)</td><td>4 minutes per debater</td></tr>
+            <tr><td>Public Forum (PF)</td><td>2 minutes per team</td></tr>
+            <tr><td>Policy (CX)</td><td>8 minutes per team</td></tr>
+          </tbody>
+        </table>
+        <p>These numbers sound generous until you're in a fast round against a well-prepared opponent. Spending it well is a skill. Spending it poorly is a liability.</p>
+
+        <h2>What Is Prep Time Actually For?</h2>
+        <p>Prep time in round has three legitimate uses: <em>organization</em> (deciding which arguments matter and in what order), <em>adaptation</em> (adjusting to unexpected arguments), and <em>execution prep</em> (getting the structure of your next speech ready). Everything else — looking up evidence, writing new arguments from scratch — is a sign something went wrong before the round, not a problem prep time can fix.</p>
+
+        <h2>How Prep Time Works by Format</h2>
+        <p><strong>Lincoln-Douglas.</strong> LD gives each debater 4 minutes of individual prep time. The most common mistake is spending too much before the 1AR — that's a 4-minute speech responding to a 7-minute NC, and you need to be moving fast. A general allocation to try: before 1AR, 1 minute max; before NR, 2–3 minutes (this is your biggest strategic decision — what to collapse to); before 2AR, save whatever's left.</p>
+        <p><strong>Public Forum.</strong> PF gives each team 2 minutes total — a very short bank for 11 speeches. Most PF debaters can't afford to use any prep before the case speeches. Save your 2 minutes for the Summary and Final Focus, where the round is actually decided. Before Summary, answer one question: "What are the two arguments we're winning, and why?"</p>
+        <p><strong>Policy.</strong> Policy's 8-minute bank is the most generous — and the most tempting to misuse. Plan your usage before the round starts. The 2AC typically needs 1–2 minutes; the 2NR needs 3–4 minutes for a real collapse decision; the 2AR gets whatever's left.</p>
+
+        <h2>Prep Time Habits to Build</h2>
+        <p><strong>Start every prep period with the same question.</strong> Before you write anything, ask: <em>"What am I winning right now?"</em> This reorients you from reactive (what did they say?) to strategic (where is this round going for me?). Once you know what you're winning, the rest of prep is about protecting it.</p>
+        <p><strong>Talk out loud during prep.</strong> Saying your structure out loud catches gaps before you're mid-speech. "I'm going to start with their dropped contention, then answer their framework argument, then extend my impact." If you can't articulate your structure in 30 seconds, you don't have a structure — you have a list.</p>
+        <p><strong>Use pre-speech checklists.</strong> Before each speech, write 3 things you must accomplish. Not what you might say — what you must do. If the speech does those three things, it was a good speech.</p>
+        <p><strong>Call prep at the right moment.</strong> Don't automatically take prep before every speech. Call it when you have a decision to make. If you already know what you're going to say, save the bank for later when you genuinely need it.</p>
+
+        <h2>Common Mistakes</h2>
+        <p>Re-reading your case from the beginning wastes time you could spend deciding. Taking the maximum before every speech signals slow decision-making — build speed in practice so you can use less in rounds. And if your flow is messy, prep time can't save you: prep magnifies the quality of your flowing, not the other way around.</p>
+
+        <div class="exercise-box">
+          <h4>Try It Yourself</h4>
+          <p><strong>60-second structure drill:</strong> At the start of every prep period in practice, set a timer for 60 seconds. Before it goes off, state out loud the complete structure of your next speech — what you're covering, in what order, and why. If you can't do it in 60 seconds, your round awareness needs work.</p>
+          <p style="margin-top:0.75rem;"><strong>Restricted prep:</strong> Run a practice round with half the normal prep time. This forces immediate prioritization and quickly exposes which prep steps are essential versus filler.</p>
+          <p style="margin-top:0.75rem;"><strong>In your next round:</strong> Don't use any prep for the first speech you'd normally prep before. Start it immediately. Chances are it'll be fine — and you'll have banked time for when you actually need it.</p>
+        </div>
+      </div>
+    </article>
+
+    <article id="post-14">
+      <header class="article-header">
+        <div class="article-meta">Practice · Prep Time</div>
+        <h1 class="article-title">Prep Time Management: College</h1>
+        <div class="article-byline">By Mishan Pauley</div>
+      </header>
+      <div class="article-body">
+        <p class="lede">At the college level, prep time isn't just about writing your next speech — it's about running a parallel decision-making process while the round is still happening. The debaters who win close rounds at college nationals aren't necessarily the ones with the best arguments. They're the ones who made better decisions in the 60 seconds before each speech.</p>
+
+        <h2>What Changes at the College Level</h2>
+        <p>High school prep habits stop working in college because college rounds are denser. A college policy 1NC might run 5–6 off-case positions. Every prep period is a high-stakes decision under time pressure, and the cost of a bad decision — going for the wrong argument, miscommunicating the split, taking too long to decide — compounds across every speech that follows. Parliamentary debate presents a different pressure: very little prep time between speeches, which means most strategic preparation happens before the round starts and in real time during it.</p>
+
+        <h2>Prep Time by Format</h2>
+        <p><strong>NDT/CEDA Policy</strong> gives each team 8 minutes. Here's a starting framework:</p>
+        <table class="speech-table">
+          <thead><tr><th>Speech</th><th>Recommended Prep</th><th>Primary Use</th></tr></thead>
+          <tbody>
+            <tr><td>2AC</td><td>1–2 min</td><td>Off-case depth decisions; 1AC extension strategy</td></tr>
+            <tr><td>2NC</td><td>1 min</td><td>Confirm the split with 1NR</td></tr>
+            <tr><td>1NR</td><td>30 sec</td><td>Confirm what 2NC covered; execute</td></tr>
+            <tr><td>1AR</td><td>2–3 min</td><td>Triage the block; decide what's worth going for on aff</td></tr>
+            <tr><td>2NR</td><td>2–3 min</td><td>Collapse decision; round narrative</td></tr>
+            <tr><td>2AR</td><td>Whatever's left</td><td>Close on what you're winning</td></tr>
+          </tbody>
+        </table>
+        <p><strong>NPDA Parliamentary</strong> gives each team 3 minutes total — given before the round begins, not between speeches. Those 3 minutes are entirely for case construction and partner alignment. Once the round starts, there's no more prep. In-round, the 30–60 seconds between speeches while the judge is writing is your only moment to recalibrate. Use it.</p>
+
+        <h2>The Collapse Decision</h2>
+        <p>The most important use of prep time in college policy is the collapse decision — choosing, in the 2NR, which one or two arguments the neg is going to win and going all-in. Bad 2NRs try to cover everything. Good 2NRs pick one thing, go deep, and win it cleanly.</p>
+        <p>Making the collapse decision well requires three things: knowing what's alive on your flow (answered fully, partially, or dropped), knowing what the judge values (policy impacts vs. K impacts, technical vs. big-picture), and committing fully. Ambivalent 2NRs lose. Pick one position. Explain why it resolves the round. Win it.</p>
+
+        <h2>The 2NC/1NR Split</h2>
+        <p>The neg block is 13 minutes of combined speech time. The split decision should happen in prep before the 2NC and should take less than 60 seconds. If it's taking longer, the team hasn't done enough block-file work before the round. A fast split sounds like: "I'm going for the K and topicality. You take the DA and extend the CP in case they perm." Full stop. The rest of prep goes to execution.</p>
+
+        <h2>Block Files and Prep Time</h2>
+        <p>The fastest prep periods happen when you're pulling from prepared material rather than generating arguments in the moment. A block file — a library of pre-written responses to arguments you're likely to face — is what makes prep time fast at the college level. What belongs in a block file: blocks to common DAs on this year's topic, 2AC blocks against your own off-case positions, generic topicality blocks, K responses for when you're aff, and impact comparison blocks. Block files should be live documents — updated after every tournament based on what you weren't ready for.</p>
+
+        <h2>Parliamentary Prep: The 20-Minute Window</h2>
+        <p>NPDA teams typically receive their resolution 20 minutes before the round. A high-functioning prep process: <em>minutes 1–3</em>, resolve the resolution — what does it say, what's the best interpretation; <em>minutes 3–10</em>, build the case — framework, contentions, examples, impact story; <em>minutes 10–15</em>, anticipate the other side and build in-round blocks; <em>minutes 15–20</em>, partner alignment — who covers what, what the voting issues are, how the final rebuttal closes.</p>
+
+        <h2>Prep Time Under Pressure</h2>
+        <p>Slow down the first 15 seconds of any prep period. Resist the instinct to write immediately. Take 15 seconds to look at your flow and answer "what am I winning?" before you pick up a pen. Then make the decision before you start writing — out loud if necessary. "I'm going for the politics DA. I'm dropping the CP." Then write. And use your partner: 30 seconds of partner consultation is often worth more than 90 seconds of solo deliberation.</p>
+
+        <div class="exercise-box">
+          <h4>Try It Yourself</h4>
+          <p><strong>90-second split drill (Policy):</strong> In practice, run a 1NC with four off-case positions. Set a timer for 90 seconds. Before it goes off, both partners must agree on the split. Repeat until the decision is routine and fast.</p>
+          <p style="margin-top:0.75rem;"><strong>Timed collapse decisions:</strong> After the 1AR in practice, give yourself 60 seconds to decide out loud what you're going for in the 2NR and why. If you can't say it in 60 seconds, you're not ready to give the speech.</p>
+          <p style="margin-top:0.75rem;"><strong>Cold NPDA prep simulation:</strong> Give your partner an unfamiliar resolution. Run the full 20-minute prep process — analysis, case construction, block prep, partner alignment — then deliver the PMC live when the timer goes off.</p>
+          <p style="margin-top:0.75rem;"><strong>Resources:</strong> <a href="https://openev.debatecoaches.org/" target="_blank">Open Evidence Project</a> (camp files for block building) · <a href="https://paperlessdebate.com/" target="_blank">Verbatim</a> (block files live here) · <a href="https://cedadebate.org/" target="_blank">CEDA</a> / <a href="https://npdadebate.com/" target="_blank">NPDA</a> (tournament archives for prep simulation)</p>
+        </div>
+      </div>
+    </article>
+
+    <article id="post-15">
+      <header class="article-header">
+        <div class="article-meta">Practice · Cross-Examination</div>
+        <h1 class="article-title">Cross-Examination: High School</h1>
+        <div class="article-byline">By Mishan Pauley</div>
+      </header>
+      <div class="article-body">
+        <p class="lede">Cross-examination is the part of the round most debaters under-practice. It feels improvisational, so people treat it as something you can't train for — you just stand up and wing it. That's a mistake. CX is the most trainable skill in debate precisely because it's structured: there are only so many things a good question can do, and you can drill each of them.</p>
+
+        <h2>What Cross-Examination Is Actually For</h2>
+        <p>CX doesn't win rounds on its own — no judge writes "the affirmative won because of a great cross-ex." What CX does is set up the arguments your speeches cash in. A good CX does one of four things: clarifies an argument so you can answer it precisely, exposes a weakness in evidence or reasoning, locks your opponent into a position they can't escape later, or forces a concession you'll quote back in your next speech. If a question isn't doing one of those four things, it's wasting your time. The biggest improvement most high schoolers can make is to stop asking questions that fill three minutes and start asking questions with a purpose.</p>
+
+        <h2>Asking: Drills for the Questioner</h2>
+        <p><strong>The funnel.</strong> Weak CX asks the big question first — "So your plan doesn't solve, right?" — and gets an easy "no." Strong CX funnels: a series of small, hard-to-dodge questions that each establish one fact, ending in a conclusion the opponent has already conceded the pieces of. Take one argument from your partner's case and write a 4-question funnel ending in a damaging admission, then run it live and see if they can wriggle out.</p>
+        <p><strong>Five questions, no notes.</strong> Have your partner read a case, then ask five questions about it on the spot with zero prep. The goal is fluency — getting comfortable generating questions in real time instead of freezing.</p>
+        <p><strong>The evidence interrogation.</strong> Pick one piece of your opponent's evidence and make your entire CX about it: Who wrote it? When? What's the qualification? What does it actually claim versus what they said? Vague, overstated evidence falls apart the moment someone asks specific questions.</p>
+        <p><strong>One question at a time.</strong> No compound questions, no long preambles. Ask one short question, let them answer, then follow up based on what they said. This builds the most important questioning skill: listening to the answer instead of reading your next scripted question off a list.</p>
+
+        <h2>Answering: Drills for the Respondent</h2>
+        <p>You spend half of every CX answering, and a strong respondent can neutralize a great questioner. <strong>The honest-but-framed answer:</strong> you can't lie and stalling looks bad, so practice answering truthfully while framing on your terms — "Does your plan cost money?" → "Yes, and that cost is justified because—." Answer, then pivot to why it doesn't hurt you. <strong>Spot the trap:</strong> have an experienced debater run a funnel on you and practice recognizing the dangerous question — the one where "yes" loses the argument — before the chain closes. <strong>The composure drill:</strong> answer under deliberately aggressive, fast, interrupting questioning while staying calm. Judges notice poise; a composed respondent looks more credible than a questioner who's pushing too hard.</p>
+
+        <h2>Flowing Cross-Examination</h2>
+        <p>Almost no high schoolers flow CX, and that's a missed opportunity. Concessions only matter if you can quote them — and you can't quote what you didn't write down. For your next three practice rounds, keep a small dedicated CX flow: every question, every answer, especially admissions. Right before your next speech, scan it and open with "In cross-ex, they conceded that..." Once you've won a round on a CX concession, you'll never skip flowing it again.</p>
+
+        <h2>Format Notes</h2>
+        <p>In <strong>Policy</strong>, every constructive is followed by a 3-minute cross-ex — lots of opportunity, and lots of risk if you're unprepared. In <strong>Lincoln-Douglas</strong>, a single 3-minute CX follows each constructive, and it's often where the clash over framework actually happens. In <strong>Public Forum</strong>, the format uses "crossfire" — both debaters question each other simultaneously, with a Grand Crossfire near the end — so you have to ask and answer in the same period. Confirm current timing in the NSDA rulebook at <a href="https://www.speechanddebate.org/resources/" target="_blank">speechanddebate.org/resources</a> and check local league norms with your coach.</p>
+
+        <div class="exercise-box">
+          <h4>Try It Yourself — A 20-Minute CX Block</h4>
+          <p><strong>Warm-up (3 min):</strong> Five questions, no notes, on a partner's case.</p>
+          <p style="margin-top:0.75rem;"><strong>Funnel drill (7 min):</strong> Write and run a 4-question funnel; have your partner try to escape it; rewrite.</p>
+          <p style="margin-top:0.75rem;"><strong>Switch sides (7 min):</strong> Your partner funnels you; practice spot-the-trap and the honest-but-framed answer.</p>
+          <p style="margin-top:0.75rem;"><strong>Debrief (3 min):</strong> Each debater names the most effective question asked and the best escape from a trap.</p>
+          <p style="margin-top:0.75rem;"><strong>Resource:</strong> <a href="https://www.speechanddebate.org/resources/" target="_blank">NSDA Resources</a> (current CX rules by format)</p>
+        </div>
+
+        <div class="exercise-box">
+          <h4>Another Option — A 30-Minute CX Block</h4>
+          <p>With a full half hour and a partner, this longer block builds depth across a single case rather than rotating through quick drills.</p>
+          <p style="margin-top:0.75rem;"><strong>Case study setup (4 min):</strong> One debater reads a full constructive; the other flows it and silently marks the two arguments most vulnerable in CX.</p>
+          <p style="margin-top:0.75rem;"><strong>Targeted funnels (10 min):</strong> The questioner builds and runs a funnel against each of those two arguments — about 5 minutes each. Aim for a clean chain that ends in a real admission; reset and rerun if it falls apart.</p>
+          <p style="margin-top:0.75rem;"><strong>Role reversal (10 min):</strong> Switch. The original speaker questions the same case from the other side, and the first questioner defends it using the honest-but-framed answer and spot-the-trap drills.</p>
+          <p style="margin-top:0.75rem;"><strong>Evidence round (3 min):</strong> Each debater asks three rapid-fire questions about a single piece of evidence — author, date, what it actually claims — with no lead-ups.</p>
+          <p style="margin-top:0.75rem;"><strong>Debrief (3 min):</strong> Both answer out loud — which funnel produced the most usable concession, and which question would you cut as wasted time?</p>
+        </div>
+      </div>
+    </article>
+
+    <article id="post-16">
+      <header class="article-header">
+        <div class="article-meta">Practice · Cross-Examination</div>
+        <h1 class="article-title">Cross-Examination: College</h1>
+        <div class="article-byline">By Mishan Pauley</div>
+      </header>
+      <div class="article-body">
+        <p class="lede">At the college level, cross-examination stops being a clarification period and becomes a strategic battleground. The arguments are denser, the evidence is more technical, and your opponents are sophisticated enough that a sloppy question hands them a free platform. The best cross-examiners enter every CX with a short list of goals and work toward them regardless of how evasive the respondent is.</p>
+
+        <h2>The College CX Mindset</h2>
+        <p>In high school, a good CX exposes weak evidence. In college, the respondent often knows their evidence is weak and has prepared answers for the obvious questions. So the questioner's job shifts: you're not hunting the easy gotcha, you're building the record for your next speech. Every concession you extract becomes a card you can read in the 2AC or 2NC — "they conceded the link is non-unique, so the disad has no internal link." CX in college is won before it starts: you walk in knowing the three or four things you need to establish and you don't get pulled off them. Improvisation is for follow-ups, not the whole period.</p>
+
+        <h2>Drills for the Questioner</h2>
+        <p><strong>Three-goal CX.</strong> Before a practice round, write down exactly three things you want to walk out having established. Run the CX, then check whether you hit all three. A questioner with three fixed goals converts; one who chases whatever the respondent says drifts.</p>
+        <p><strong>Evidence indictment under pressure.</strong> Have a partner read a dense camp-file card. Your CX must establish a specific, quotable flaw: the date is old relative to the uniqueness debate, the author is unqualified on the precise claim, the card is about a different mechanism, or the warrant is missing. The deliverable is an indictment you can read verbatim later.</p>
+        <p><strong>Pinning the link story.</strong> On a disad or kritik, the link is usually weakest. Run a CX whose only job is to make them commit to the exact mechanism — "What specifically about the plan triggers the disad?" Once committed, they can't shift links in the block without it looking like a concession.</p>
+        <p><strong>The alt/perm CX.</strong> Against kritiks, drill the CX that exposes a vague alternative: "What does the alt actually do? Does it use the state? Is it a pre-requisite or does it compete? What does the world look like if you win it?" A K team that can't answer these is far more beatable, and you've built your perm and alt-solvency arguments on the record.</p>
+
+        <h2>Drills for the Respondent</h2>
+        <p><strong>Defend the link story:</strong> have a partner pin you on your link or alternative; commit to a clear, defensible mechanism and hold it without being evasive or over-committing. <strong>Concede strategically:</strong> give up the unimportant points fast and confidently to preserve credibility, then dig in on what matters — "yes, that's true" on a throwaway, hard defense on the load-bearing claim. <strong>The K explanation drill:</strong> if your team runs kritiks, practice explaining the alt, link story, and world of the alt clearly and without jargon under aggressive questioning. A team that can make its K legible in CX is dramatically more persuasive than one hiding behind theory-speak.</p>
+
+        <h2>Flowing and Banking CX</h2>
+        <p>Concessions are only worth what you can prove, and "you said in cross-ex" is far weaker than reading back the exact exchange. Keep a dedicated CX flow every practice round and star every concession. In prep before your next speech, build at least one argument directly off a CX exchange — the 2AC and 2NC are the natural homes. Make banking CX concessions a habit and you'll find rounds turning on exchanges your opponents forgot happened.</p>
+
+        <h2>Format Notes</h2>
+        <p>In <strong>NDT/CEDA policy</strong>, each constructive is followed by a 3-minute cross-examination — four CX periods per round, a lot of strategic real estate where the evidence-indictment and link-pinning drills shine. In <strong>NPDA/NPTE parliamentary</strong>, there's no formal sit-down CX; "points of information" (POIs) serve a related function — brief questions offered during an opponent's constructive that the speaker may accept or decline. Drill POIs as a distinct skill: a good one is a single sentence, lands a real point, and is hard to wave off. In <strong>British Parliamentary</strong> and similar formats, POIs are the primary form of in-speech engagement, so the offer-and-absorb drill matters even more. Confirm rules with your circuit via <a href="https://cedadebate.org/" target="_blank">CEDA</a> and the <a href="https://npdadebate.com/" target="_blank">NPDA</a>.</p>
+
+        <div class="exercise-box">
+          <h4>Try It Yourself — A 30-Minute CX Block</h4>
+          <p><strong>Goal-setting warm-up (5 min):</strong> Write a three-goal list against a partner's case; run the CX; check whether you hit all three.</p>
+          <p style="margin-top:0.75rem;"><strong>Evidence indictment (8 min):</strong> Partner reads a dense card; you build a quotable indictment.</p>
+          <p style="margin-top:0.75rem;"><strong>Link/alt pinning (8 min):</strong> Pin a disad link or K alt; switch and practice defending it.</p>
+          <p style="margin-top:0.75rem;"><strong>CX banking (5 min):</strong> Review your CX flow and build one argument off a concession.</p>
+          <p style="margin-top:0.75rem;"><strong>Debrief (4 min):</strong> Name the most damaging concession extracted and the cleanest escape.</p>
+          <p style="margin-top:0.75rem;"><strong>Resources:</strong> <a href="https://cedadebate.org/" target="_blank">CEDA</a> / <a href="https://npdadebate.com/" target="_blank">NPDA</a> (round archives for the watch-and-flow drill)</p>
+        </div>
+
+        <div class="exercise-box">
+          <h4>Another Option — A 30-Minute Position-Defense CX Block</h4>
+          <p>Where the first block rotates through skills, this one runs a single position through a full adversarial cycle — closer to how CX actually unfolds in a real round.</p>
+          <p style="margin-top:0.75rem;"><strong>Position setup (4 min):</strong> One team reads a single off-case position — disad, CP, or kritik — in full. The other flows it and writes their three CX goals before standing up.</p>
+          <p style="margin-top:0.75rem;"><strong>Live CX with a clock (6 min):</strong> Run a strict 3-minute cross-ex, then spend 3 minutes converting what you got into one written argument for your next speech. If you can't, the questions weren't strategic enough.</p>
+          <p style="margin-top:0.75rem;"><strong>Block simulation (8 min):</strong> The defending team gives a 4-minute block that must account for every CX concession. The questioning team flows it and flags every place the block quietly walks one back.</p>
+          <p style="margin-top:0.75rem;"><strong>Adversarial reversal (8 min):</strong> Swap roles on the same position. The new questioner has seen how it's defended, so sharpen the CX — drill pinning the link or alt mechanism specifically.</p>
+          <p style="margin-top:0.75rem;"><strong>Debrief (4 min):</strong> As a group — which concession survived into the block, which got walked back, and what single question would have closed the escape route?</p>
+        </div>
+      </div>
+    </article>
+
+  </main>
+</div>
+
+<footer class="wdi-confidential">
+  <strong>Stuck on something? Just ask.</strong> Highlight any passage to ask a question about it, or add a general
+  question from the bottom of a post. Your questions go privately to Mishan at the Women's Debate Institute, who'll
+  reply to you directly — nothing you write is posted publicly. © 2026 Women's Debate Institute.
+</footer>
+
+<script>
+  function show(index) {
+    document.querySelectorAll('article').forEach((a, i) => {
+      a.classList.toggle('active', i === index);
+    });
+    document.querySelectorAll('#nav button').forEach((b, i) => {
+      b.classList.toggle('active', i === index);
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (window.WDIReview) WDIReview.onPostChange(index);
+  }
+</script>
+
+<!-- ===== Tell Mishan Layer ===== -->
+<button id="wdiSelBtn">💬 Make a comment</button>
+
+<div class="wdi-banner" id="wdiBanner" style="display:none">
+  Reading and have a question? <strong>Highlight any text</strong> to ask about that passage, or use the panel — up to <strong>5 questions</strong>. Then hit <strong>Send to Mishan</strong>.
+  <button onclick="WDIReview.dismissBanner()">Got it</button>
+</div>
+
+<div id="wdiDock">
+  <div id="wdiDockHead" onclick="WDIReview.toggleDock()">
+    <span>💬 Tell Mishan</span>
+    <span class="wdi-head-right">
+      <button id="wdiGuideBtn" type="button" aria-label="Quick guide" title="Quick guide" onclick="event.stopPropagation(); WDIReview.openGuide()">?</button>
+      <span class="count"><span id="wdiCount">0</span> / 5</span>
+    </span>
+  </div>
+  <div id="wdiDockBody">
+    <div class="wdi-row">
+      <label for="wdiName">Your name <span class="wdi-req" aria-hidden="true">*</span></label>
+      <input type="text" id="wdiName" placeholder="e.g. Jane Doe" required aria-required="true" oninput="WDIReview.setName(this.value)">
+      <p class="wdi-req-note">Required — so Mishan knows who's asking and where to reply.</p>
+    </div>
+    <p class="wdi-hint">Highlight text in a post to ask about a specific passage, or add a general question from the bottom of any post. Max 5.</p>
+    <ul class="wdi-clist" id="wdiList"></ul>
+    <button id="wdiSubmit" onclick="WDIReview.openSummary()" disabled>Send to Mishan</button>
+  </div>
+</div>
+
+<div class="wdi-modal-bg" id="wdiComposerBg">
+  <div class="wdi-modal"><div class="wdi-modal-in">
+    <h3 id="wdiComposerTitle">Ask a question</h3>
+    <div class="sub" id="wdiComposerSub"></div>
+    <div class="quotebox" id="wdiComposerQuote" style="display:none"></div>
+    <textarea id="wdiComposerText" placeholder="What's your question? Be as specific as you can — e.g. 'How is this different from a counterplan?'"></textarea>
+    <div class="wdi-modal-actions">
+      <button class="wdi-btn primary" onclick="WDIReview.saveComposer()">Save question</button>
+      <button class="wdi-btn ghost" id="wdiComposerDelete" onclick="WDIReview.deleteCurrent()" style="display:none">Delete</button>
+      <button class="wdi-btn" onclick="WDIReview.closeComposer()">Cancel</button>
+    </div>
+  </div></div>
+</div>
+
+<div class="wdi-modal-bg" id="wdiSummaryBg">
+  <div class="wdi-modal"><div class="wdi-modal-in">
+    <h3>Send your questions to Mishan</h3>
+    <div class="sub">Check the summary below, then choose how to send it. Mishan will reply to you directly.</div>
+    <div class="summary" id="wdiSummaryText"></div>
+    <div class="wdi-modal-actions">
+      <button class="wdi-btn primary" onclick="WDIReview.sendEmail()">&#9993; Email to Mishan</button>
+      <button class="wdi-btn" onclick="WDIReview.copy()">&#128203; Copy</button>
+      <button class="wdi-btn ghost" onclick="WDIReview.closeSummary()">Close</button>
+    </div>
+  </div></div>
+</div>
+
+<div class="wdi-modal-bg" id="wdiGuideBg">
+  <div class="wdi-modal"><div class="wdi-modal-in">
+    <h3>Quick Guide</h3>
+    <div class="sub">A few quick answers before you start.</div>
+    <div class="wdi-faq">
+      <div class="wdi-faq-item">
+        <p class="q">How many questions can I ask?</p>
+        <p class="a">Up to 5 per submission. Make them the ones you most want answered.</p>
+      </div>
+      <div class="wdi-faq-item">
+        <p class="q">Why only 5?</p>
+        <p class="a">It keeps things focused — your real sticking points, not every passing thought — so Mishan can give each one a thoughtful reply.</p>
+      </div>
+      <div class="wdi-faq-item">
+        <p class="q">How do I ask about a specific line?</p>
+        <p class="a">Highlight the text and click “Make a comment.” For a broader question, use “Ask a general question” at the bottom of any post.</p>
+      </div>
+      <div class="wdi-faq-item">
+        <p class="q">Can I edit or delete a question?</p>
+        <p class="a">Yes — every question in the panel has Edit and Delete. Editing doesn’t use up an extra slot.</p>
+      </div>
+      <div class="wdi-faq-item">
+        <p class="q">What happens when I hit Send?</p>
+        <p class="a">Your questions are bundled into a short summary you send to Mishan by email — or copy it across. It goes only to Mishan; nothing posts publicly.</p>
+      </div>
+      <div class="wdi-faq-item">
+        <p class="q">Will I lose my questions if I close the tab?</p>
+        <p class="a">No — they’re saved on this device. Reopen the page and they’ll still be here.</p>
+      </div>
+    </div>
+    <div class="wdi-modal-actions">
+      <button class="wdi-btn primary" onclick="WDIReview.closeGuide()">Got it</button>
+    </div>
+  </div></div>
+</div>
+
+<div class="wdi-toast" id="wdiToast"></div>
+
+<script>
+(function () {
+  "use strict";
+
+  var MAX = 5;
+  var AUTHOR_EMAIL = "mishan@mightymauls.com";
+  var STORE_KEY = "wdi-review-v1";
+  var uid = 0;
+
+  var state = { name: "", comments: [], bannerDismissed: false };
+  var draft = null; // { editingId, type, postIndex, postTitle, quote, range }
+
+  // ---- persistence ----
+  function load() {
+    try {
+      var raw = localStorage.getItem(STORE_KEY);
+      if (raw) {
+        var parsed = JSON.parse(raw);
+        state.name = parsed.name || "";
+        state.comments = Array.isArray(parsed.comments) ? parsed.comments : [];
+        state.bannerDismissed = !!parsed.bannerDismissed;
+        state.comments.forEach(function (c) { if (c.id >= uid) uid = c.id + 1; });
+      }
+    } catch (e) { /* ignore corrupt storage */ }
+  }
+  function save() {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (e) {}
+  }
+
+  // ---- helpers ----
+  function el(id) { return document.getElementById(id); }
+  function postTitleFor(index) {
+    var art = document.getElementById("post-" + index);
+    if (!art) return "Post " + index;
+    var h = art.querySelector(".post-heading, .article-title");
+    return h ? h.textContent.trim() : "Post " + index;
+  }
+  function postIndexOfNode(node) {
+    var art = node.nodeType === 1 ? node.closest("article[id^='post-']")
+                                  : (node.parentElement && node.parentElement.closest("article[id^='post-']"));
+    if (!art) return -1;
+    return parseInt(art.id.replace("post-", ""), 10);
+  }
+  function trunc(s, n) { s = s.replace(/\s+/g, " ").trim(); return s.length > n ? s.slice(0, n - 1) + "…" : s; }
+
+  var toastTimer;
+  function toast(msg) {
+    var t = el("wdiToast");
+    t.textContent = msg; t.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { t.classList.remove("show"); }, 1900);
+  }
+
+  // ---- highlight wrapping ----
+  function highlightRange(range, id) {
+    var span = document.createElement("span");
+    span.className = "wdi-hl";
+    span.setAttribute("data-wdi-id", id);
+    try {
+      range.surroundContents(span);
+    } catch (e) {
+      try {
+        span.appendChild(range.extractContents());
+        range.insertNode(span);
+      } catch (e2) { return null; }
+    }
+    span.addEventListener("click", function (ev) {
+      ev.stopPropagation();
+      openExisting(id);
+    });
+    return span;
+  }
+  function unhighlight(id) {
+    document.querySelectorAll('.wdi-hl[data-wdi-id="' + id + '"]').forEach(function (span) {
+      var parent = span.parentNode;
+      while (span.firstChild) parent.insertBefore(span.firstChild, span);
+      parent.removeChild(span);
+      parent.normalize();
+    });
+  }
+  // best-effort re-highlight after reload by searching the post body for the quote
+  function rehighlight(c) {
+    if (c.type !== "inline" || !c.quote) return;
+    var art = document.getElementById("post-" + c.postIndex);
+    if (!art) return;
+    var body = art.querySelector(".post-body, .article-body") || art;
+    var walker = document.createTreeWalker(body, NodeFilter.SHOW_TEXT, null);
+    var needle = c.quote.replace(/\s+/g, " ").trim();
+    var node;
+    while ((node = walker.nextNode())) {
+      var txt = node.nodeValue;
+      var idx = txt.replace(/\s+/g, " ").indexOf(needle);
+      if (idx === -1) idx = txt.indexOf(c.quote);
+      if (idx !== -1) {
+        var r = document.createRange();
+        r.setStart(node, idx);
+        r.setEnd(node, Math.min(idx + needle.length, txt.length));
+        highlightRange(r, c.id);
+        return;
+      }
+    }
+  }
+
+  // ---- selection -> floating Comment button ----
+  function clearSelBtn() { el("wdiSelBtn").style.display = "none"; }
+  function onSelect() {
+    var sel = window.getSelection();
+    if (!sel || sel.isCollapsed || !sel.rangeCount) { clearSelBtn(); return; }
+    var range = sel.getRangeAt(0);
+    var idx = postIndexOfNode(range.commonAncestorContainer);
+    var inBody = range.commonAncestorContainer.nodeType === 1
+        ? range.commonAncestorContainer.closest(".post-body, .article-body")
+        : (range.commonAncestorContainer.parentElement && range.commonAncestorContainer.parentElement.closest(".post-body, .article-body"));
+    var text = sel.toString().trim();
+    if (idx < 0 || !inBody || text.length < 2) { clearSelBtn(); return; }
+
+    var rect = range.getBoundingClientRect();
+    var btn = el("wdiSelBtn");
+    btn.style.display = "block";
+    btn.style.top = (window.scrollY + rect.top - 40) + "px";
+    btn.style.left = (window.scrollX + rect.left) + "px";
+    btn._pending = { postIndex: idx, postTitle: postTitleFor(idx), quote: text, range: range.cloneRange() };
+  }
+
+  // ---- composer ----
+  function openComposer(d) {
+    if (d.editingId == null && state.comments.length >= MAX) {
+      toast("You've used all " + MAX + " questions. Edit or delete one first.");
+      return;
+    }
+    draft = d;
+    el("wdiComposerTitle").textContent = d.editingId != null ? "Edit question" : (d.type === "inline" ? "Ask about this passage" : "Ask a general question");
+    el("wdiComposerSub").textContent = d.postTitle + (d.type === "post" ? "  ·  general question" : "");
+    var q = el("wdiComposerQuote");
+    if (d.type === "inline" && d.quote) { q.style.display = "block"; q.textContent = "“" + d.quote + "”"; }
+    else { q.style.display = "none"; }
+    var ta = el("wdiComposerText");
+    ta.value = d.text || "";
+    el("wdiComposerDelete").style.display = d.editingId != null ? "inline-block" : "none";
+    el("wdiComposerBg").classList.add("open");
+    setTimeout(function () { ta.focus(); }, 30);
+  }
+  function openExisting(id) {
+    var c = state.comments.find(function (x) { return x.id === id; });
+    if (!c) return;
+    openComposer({ editingId: id, type: c.type, postIndex: c.postIndex, postTitle: c.postTitle, quote: c.quote, text: c.text });
+  }
+
+  var api = {
+    onPostChange: function () { clearSelBtn(); },
+
+    setName: function (v) { state.name = v; save(); refresh(); },
+
+    toggleDock: function () { el("wdiDock").classList.toggle("collapsed"); },
+
+    dismissBanner: function () { state.bannerDismissed = true; save(); el("wdiBanner").style.display = "none"; },
+
+    startInline: function () {
+      var p = el("wdiSelBtn")._pending;
+      clearSelBtn();
+      if (!p) return;
+      openComposer({ type: "inline", postIndex: p.postIndex, postTitle: p.postTitle, quote: p.quote, range: p.range });
+      window.getSelection().removeAllRanges();
+    },
+
+    startPostNote: function (index) {
+      openComposer({ type: "post", postIndex: index, postTitle: postTitleFor(index) });
+    },
+
+    saveComposer: function () {
+      if (!draft) return;
+      var text = el("wdiComposerText").value.trim();
+      if (!text) { toast("Type your question first."); return; }
+      if (draft.editingId != null) {
+        var c = state.comments.find(function (x) { return x.id === draft.editingId; });
+        if (c) { c.text = text; c.ts = Date.now(); }
+      } else {
+        var id = uid++;
+        state.comments.push({
+          id: id, type: draft.type, postIndex: draft.postIndex,
+          postTitle: draft.postTitle || postTitleFor(draft.postIndex),
+          quote: draft.quote || "", text: text, ts: Date.now()
+        });
+        if (draft.type === "inline" && draft.range) highlightRange(draft.range, id);
+      }
+      save(); refresh(); api.closeComposer();
+      toast("Question saved");
+    },
+
+    deleteCurrent: function () {
+      if (!draft || draft.editingId == null) return;
+      api.removeComment(draft.editingId);
+      api.closeComposer();
+    },
+
+    removeComment: function (id) {
+      unhighlight(id);
+      state.comments = state.comments.filter(function (x) { return x.id !== id; });
+      save(); refresh();
+      toast("Question deleted");
+    },
+
+    closeComposer: function () { draft = null; el("wdiComposerBg").classList.remove("open"); },
+
+    jumpTo: function (id) {
+      var c = state.comments.find(function (x) { return x.id === id; });
+      if (!c) return;
+      show(c.postIndex);
+      setTimeout(function () {
+        var span = document.querySelector('.wdi-hl[data-wdi-id="' + id + '"]');
+        if (span) span.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 60);
+    },
+
+    openSummary: function () {
+      if (!state.comments.length) { toast("No questions yet."); return; }
+      el("wdiSummaryText").textContent = buildSummary();
+      el("wdiSummaryBg").classList.add("open");
+    },
+    closeSummary: function () { el("wdiSummaryBg").classList.remove("open"); },
+
+    openGuide: function () { el("wdiGuideBg").classList.add("open"); },
+    closeGuide: function () { el("wdiGuideBg").classList.remove("open"); },
+
+    sendEmail: function () {
+      var subject = "WDI Debate Diaries question — " + postLabel() + " — from " + (state.name || "a student");
+      var url = "mailto:" + AUTHOR_EMAIL + "?subject=" + encodeURIComponent(subject) +
+                "&body=" + encodeURIComponent(buildSummary());
+      window.location.href = url;
+    },
+    copy: function () {
+      var txt = buildSummary();
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(txt).then(function () { toast("Copied to clipboard"); },
+          function () { fallbackCopy(txt); });
+      } else { fallbackCopy(txt); }
+    }
+  };
+
+  function fallbackCopy(txt) {
+    var ta = document.createElement("textarea");
+    ta.value = txt; ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy"); toast("Copied to clipboard"); } catch (e) { toast("Copy failed — use Download"); }
+    ta.remove();
+  }
+
+  function reviewedPosts() {
+    var seen = [], titles = [];
+    state.comments.slice().sort(function (a, b) { return a.postIndex - b.postIndex; })
+      .forEach(function (c) {
+        if (seen.indexOf(c.postIndex) === -1) { seen.push(c.postIndex); titles.push(c.postTitle); }
+      });
+    return titles;
+  }
+  function postLabel() {
+    var t = reviewedPosts();
+    if (t.length === 0) return "no posts";
+    if (t.length <= 3) return t.join("; ");
+    return t.slice(0, 3).join("; ") + "; +" + (t.length - 3) + " more";
+  }
+
+  function buildSummary() {
+    var lines = [];
+    lines.push("WDI — Debate Diaries: Student Questions");
+    lines.push("From: " + (state.name || "(not given)"));
+    lines.push("Date: " + new Date().toLocaleDateString());
+    lines.push("Post(s): " + postLabel());
+    lines.push(state.comments.length + " question" + (state.comments.length === 1 ? "" : "s"));
+    lines.push("");
+    lines.push("========================================");
+    lines.push("");
+    // group by post, in nav order
+    var order = state.comments.slice().sort(function (a, b) {
+      return a.postIndex - b.postIndex || a.ts - b.ts;
+    });
+    var n = 0;
+    order.forEach(function (c) {
+      n++;
+      lines.push(n + ". [" + c.postTitle + "]  " + (c.type === "inline" ? "(about a passage)" : "(general question)"));
+      if (c.type === "inline" && c.quote) lines.push('   Re: "' + trunc(c.quote, 280) + '"');
+      lines.push("   Q: " + c.text);
+      lines.push("");
+    });
+    lines.push("----------------------------------------");
+    lines.push("Sent from the WDI Debate Diaries reader. These questions were submitted privately for Mishan to answer.");
+    lines.push("© 2026 Women's Debate Institute.");
+    return lines.join("\n");
+  }
+
+  function refresh() {
+    el("wdiCount").textContent = state.comments.length;
+    el("wdiName").value = state.name;
+    var list = el("wdiList");
+    list.innerHTML = "";
+    if (!state.comments.length) {
+      var empty = document.createElement("li");
+      empty.className = "wdi-empty";
+      empty.textContent = "No questions yet — highlight text to ask about it.";
+      list.appendChild(empty);
+    } else {
+      state.comments.slice().sort(function (a, b) { return a.postIndex - b.postIndex || a.ts - b.ts; })
+        .forEach(function (c) {
+          var li = document.createElement("li");
+          var post = document.createElement("span"); post.className = "cpost"; post.textContent = c.postTitle;
+          li.appendChild(post);
+          if (c.type === "inline" && c.quote) {
+            var q = document.createElement("span"); q.className = "cquote"; q.textContent = "“" + trunc(c.quote, 70) + "”";
+            li.appendChild(q);
+          }
+          var t = document.createElement("span"); t.className = "ctxt"; t.textContent = c.text;
+          li.appendChild(t);
+          var act = document.createElement("div"); act.className = "cact";
+          if (c.type === "inline") {
+            var jb = document.createElement("button"); jb.textContent = "Jump to"; jb.onclick = function () { api.jumpTo(c.id); };
+            act.appendChild(jb);
+          }
+          var eb = document.createElement("button"); eb.textContent = "Edit"; eb.onclick = function () { openExisting(c.id); };
+          var db = document.createElement("button"); db.textContent = "Delete"; db.onclick = function () { api.removeComment(c.id); };
+          act.appendChild(eb); act.appendChild(db);
+          li.appendChild(act);
+          list.appendChild(li);
+        });
+    }
+    el("wdiSubmit").disabled = !(state.comments.length > 0 && state.name.trim().length > 0);
+  }
+
+  function injectPostNotes() {
+    document.querySelectorAll("article[id^='post-'] .post-body, article[id^='post-'] .article-body").forEach(function (body) {
+      var idx = postIndexOfNode(body);
+      var b = document.createElement("button");
+      b.className = "wdi-postnote";
+      b.innerHTML = "💬 Make a general comment about this post";
+      b.addEventListener("click", function () { api.startPostNote(idx); });
+      body.appendChild(b);
+    });
+  }
+
+  function init() {
+    load();
+    injectPostNotes();
+    state.comments.forEach(rehighlight);
+    refresh();
+    if (!state.bannerDismissed) el("wdiBanner").style.display = "block";
+
+    el("wdiSelBtn").addEventListener("mousedown", function (ev) { ev.preventDefault(); });
+    el("wdiSelBtn").addEventListener("click", function () { api.startInline(); });
+    document.addEventListener("mouseup", function () { setTimeout(onSelect, 0); });
+    document.addEventListener("selectionchange", function () {
+      var sel = window.getSelection();
+      if (!sel || sel.isCollapsed) clearSelBtn();
+    });
+    // close modals on backdrop click
+    ["wdiComposerBg", "wdiSummaryBg", "wdiGuideBg"].forEach(function (id) {
+      el(id).addEventListener("click", function (ev) { if (ev.target === this) this.classList.remove("open"); });
+    });
+    document.addEventListener("keydown", function (ev) {
+      if (ev.key === "Escape") { api.closeComposer(); api.closeSummary(); api.closeGuide(); }
+    });
+
+    window.WDIReview = api;
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
+})();
+</script>
+</body>
+</html>
